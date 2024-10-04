@@ -53,6 +53,10 @@
                             <li class="nav-item">
                                 <a href="{{ route('departments.index') }}" class="nav-link" data-key="t-horizontal">Department</a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('complaintTypes.index') }}" class="nav-link" data-key="t-horizontal">Complaint Type</a>
+                            </li>
                         </ul>
                     </div>
                 </li>
