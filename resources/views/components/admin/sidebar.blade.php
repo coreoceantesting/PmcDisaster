@@ -57,6 +57,10 @@
                             <li class="nav-item">
                                 <a href="{{ route('complaintTypes.index') }}" class="nav-link" data-key="t-horizontal">Complaint Type</a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('complaintSubTypes.index') }}" class="nav-link" data-key="t-horizontal">Complaint Sub Type</a>
+                            </li>
                         </ul>
                     </div>
                 </li>

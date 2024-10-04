@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
-class ComplaintType extends Model
+class ComplaintSubType extends Model
 {
     use HasFactory, SoftDeletes;
-    
-    protected $fillable = ['complaint_type_name', 'initial'];
 
-    public function subTypes()
+    protected $fillable = ['complaint_sub_type_name', 'complaint_type' , 'initial'];
+
+    public function type()
     {
-        return $this->hasMany(ComplaintSubType::class, 'id');
+        return $this->belongsTo(ComplaintType::class, 'complaint_type');
     }
 
     public static function booted()

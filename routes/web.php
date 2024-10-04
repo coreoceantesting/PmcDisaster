@@ -48,6 +48,7 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     Route::resource('wards', App\Http\Controllers\Admin\Masters\WardController::class);
     Route::resource('departments', App\Http\Controllers\Admin\Masters\DepartmentController::class);
     Route::resource('complaintTypes', App\Http\Controllers\Admin\Masters\ComplaintTypeController::class);
+    Route::resource('complaintSubTypes', App\Http\Controllers\Admin\Masters\ComplaintSubTypeController::class);
 
 
 
