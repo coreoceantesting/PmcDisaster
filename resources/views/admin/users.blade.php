@@ -19,7 +19,7 @@
                         <div class="mb-3 row">
 
                             <div class="col-md-4 mt-3">
-                                <label class="col-form-label" for="name">User Name <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="name"> Name <span class="text-danger">*</span></label>
                                 <input class="form-control" id="name" name="name" type="text" placeholder="Enter User Name">
                                 <span class="text-danger is-invalid name_err"></span>
                             </div>
@@ -46,6 +46,17 @@
                                     @endforeach
                                 </select>
                                 <span class="text-danger is-invalid role_err"></span>
+                            </div>
+
+                            <div class="col-md-4 mt-3">
+                                <label class="col-form-label" for="role">Department <span class="text-danger">*</span></label>
+                                <select class="form-control" id="department" name="department">
+                                    <option value="">--Select Department--</option>
+                                    @foreach ($departments as $department)
+                                        <option value="{{ $department->id }}">{{ $department->department_name }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger is-invalid department_err"></span>
                             </div>
 
                             <div class="col-md-4 mt-3">
@@ -89,7 +100,7 @@
                         <div class="mb-3 row">
 
                             <div class="col-md-4">
-                                <label class="col-form-label" for="name">User Name <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="name">Name <span class="text-danger">*</span></label>
                                 <input class="form-control" name="name" type="text" placeholder="Enter User Name">
                                 <span class="text-danger is-invalid name_err"></span>
                             </div>
@@ -116,6 +127,17 @@
                                     @endforeach
                                 </select>
                                 <span class="text-danger is-invalid role_err"></span>
+                            </div>
+
+                            <div class="col-md-4 mt-3">
+                                <label class="col-form-label" for="role">Department <span class="text-danger">*</span></label>
+                                <select class="form-control" id="department" name="department">
+                                    <option value="">--Select Department--</option>
+                                    @foreach ($departments as $department)
+                                        <option value="{{ $department->id }}">{{ $department->department_name }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger is-invalid department_err"></span>
                             </div>
 
                         </div>
@@ -153,6 +175,7 @@
                                     <th>Full Name</th>
                                     <th>Email</th>
                                     <th>Mobile</th>
+                                    <th>Department Name</th>
                                     {{-- <th style="min-width: 100px;">Status</th> --}}
                                     <th>Registered On</th>
                                     <th>Action</th>
@@ -165,6 +188,7 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->mobile }}</td>
+                                        <td>{{ $user->department_name ?? '-' }}</td>
                                         {{-- <td>
                                             <div class="media-body text-end icon-state">
                                                 <label class="switch">
@@ -452,6 +476,7 @@
                     $("#editForm input[name='name']").val(data.user.name);
                     $("#editForm input[name='email']").val(data.user.email);
                     $("#editForm input[name='mobile']").val(data.user.mobile);
+                    $("#editForm select[name='department']").val(data.user.department);
                     $("#editForm select[name='ward_id']").html(data.wardHtml);
                 } else {
                     swal("Error!", data.error, "error");
