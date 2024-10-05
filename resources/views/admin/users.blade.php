@@ -42,13 +42,13 @@
                                 <select class="js-example-basic-single col-sm-12" id="role" name="role">
                                     <option value="">--Select Role--</option>
                                     @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        <option value="{{ $role->id }}" data-role-type="{{ $role->name == 'Department' ? 'department' : '' }}">{{ $role->name }}</option>
                                     @endforeach
                                 </select>
                                 <span class="text-danger is-invalid role_err"></span>
                             </div>
 
-                            <div class="col-md-4 mt-3">
+                            <div class="col-md-4 mt-3 department-section" style="display: none;">
                                 <label class="col-form-label" for="role">Department <span class="text-danger">*</span></label>
                                 <select class="form-control" id="department" name="department">
                                     <option value="">--Select Department--</option>
@@ -60,15 +60,35 @@
                             </div>
 
                             <div class="col-md-4 mt-3">
-                                <label class="col-form-label" for="password">Password <span class="text-danger">*</span></label>
-                                <input class="form-control" id="password" name="password" type="password" placeholder="********">
+
+                                <label class="col-form-label" for="password-input">Password <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control password-input" placeholder="Enter password" id="password" name="password">
+                                    <button class="btn btn-outline-secondary" type="button" id="password-addon">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                                 <span class="text-danger is-invalid password_err"></span>
+
+                                {{-- <label class="col-form-label" for="password">Password <span class="text-danger">*</span></label>
+                                <input class="form-control" id="password" name="password" type="password" placeholder="********">
+                                <span class="text-danger is-invalid password_err"></span> --}}
                             </div>
 
                             <div class="col-md-4 mt-3">
+
                                 <label class="col-form-label" for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
-                                <input class="form-control" id="confirm_password" name="confirm_password" type="password" placeholder="********">
+                                <div class="input-group">
+                                    <input type="password" class="form-control confirm-password-input" placeholder="********" id="confirm_password" name="confirm_password">
+                                    <button class="btn btn-outline-secondary" type="button" id="confirm-password-addon">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                                 <span class="text-danger is-invalid confirm_password_err"></span>
+
+                                {{-- <label class="col-form-label" for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
+                                <input class="form-control" id="confirm_password" name="confirm_password" type="password" placeholder="********">
+                                <span class="text-danger is-invalid confirm_password_err"></span> --}}
                             </div>
                         </div>
 
@@ -120,7 +140,7 @@
 
                             <div class="col-md-4 mt-3">
                                 <label class="col-form-label">Select User Type / Role <span class="text-danger">*</span></label>
-                                <select class="js-example-basic-single col-sm-12" name="role">
+                                <select class="js-example-basic-single col-sm-12 role-edit" name="role">
                                     <option value="">--Select Role--</option>
                                     @foreach ($roles as $role)
                                         <option value="{{ $role->id }}">{{ $role->name }}</option>
@@ -129,9 +149,9 @@
                                 <span class="text-danger is-invalid role_err"></span>
                             </div>
 
-                            <div class="col-md-4 mt-3">
+                            <div class="col-md-4 mt-3 department-edit">
                                 <label class="col-form-label" for="role">Department <span class="text-danger">*</span></label>
-                                <select class="form-control" id="department" name="department">
+                                <select class="form-control department-field" id="department" name="department">
                                     <option value="">--Select Department--</option>
                                     @foreach ($departments as $department)
                                         <option value="{{ $department->id }}">{{ $department->department_name }}</option>
@@ -478,6 +498,15 @@
                     $("#editForm input[name='mobile']").val(data.user.mobile);
                     $("#editForm select[name='department']").val(data.user.department);
                     $("#editForm select[name='ward_id']").html(data.wardHtml);
+
+                    var role = $("#editForm select[name='role'] option:selected").text();
+
+                    if (role === "Department") {
+                        $(".department-edit").show();
+                    } else {
+                        $(".department-edit").hide();
+                    }
+
                 } else {
                     swal("Error!", data.error, "error");
                 }
@@ -626,5 +655,82 @@
             });
         }
 
+    });
+</script>
+
+{{-- hide show department section --}}
+<script>
+    $(document).ready(function() {
+        
+        $('#role').on('change', function() {
+            
+            var roleType = $(this).find('option:selected').data('role-type');
+
+           
+            if (roleType === 'department') {
+                $('.department-section').show();
+            } else {
+                $('.department-section').hide();
+                $('#department').val(''); 
+            }
+        });
+    });
+
+</script>
+
+{{-- hide show department section  edit--}}
+<script>
+    $(document).ready(function() {
+        
+        $('.role-edit').on('change', function() {
+            
+            var roleType = $(this).find('option:selected').text();
+
+           
+            if (roleType === 'Department') {
+                $('.department-edit').show();
+            } else {
+                $('.department-edit').hide();
+                $('.department-field').val(''); 
+            }
+        });
+    });
+
+</script>
+
+
+{{-- show password --}}
+<script>
+    document.getElementById('password-addon').addEventListener('click', function () {
+        var passwordInput = document.getElementById('password');
+        var icon = this.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+</script>
+
+{{-- show confirm password --}}
+<script>
+    document.getElementById('confirm-password-addon').addEventListener('click', function () {
+        var passwordInput = document.getElementById('confirm_password');
+        var icon = this.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
     });
 </script>
