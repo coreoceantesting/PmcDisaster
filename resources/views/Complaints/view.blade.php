@@ -55,8 +55,8 @@
             </div>
         </div>
         <div class="card-footer text-center">
-            @if ($complaintsDetail->approval_status == "Pending")
-                <button id="approve" class="btn btn-sm btn-success">Approve</button>
+            @if ($complaintsDetail->approval_status == "Pending" && auth()->user()->roles->pluck('name')[0] == 'Department')
+                <button id="approve" class="btn btn-sm btn-success">Accept</button>
                 <button id="reject" class="btn btn-sm btn-danger">Reject</button> 
             @endif
             <a href="{{ url()->previous() }}" class="btn btn-sm btn-info">Back</a>

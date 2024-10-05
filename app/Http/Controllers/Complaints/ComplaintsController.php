@@ -21,12 +21,17 @@ class ComplaintsController extends Controller
      */
     public function index()
     {
-        $complaintsLists = Complaint::join('complaint_types', 'complaints.complaint_type', '=', 'complaint_types.id')
+        $query = Complaint::join('complaint_types', 'complaints.complaint_type', '=', 'complaint_types.id')
         ->join('complaint_sub_types', 'complaints.complaint_sub_type', '=', 'complaint_sub_types.id')
         ->select('complaints.*','complaint_types.complaint_type_name', 'complaint_sub_types.complaint_sub_type_name')
-        ->where('complaints.approval_status', 'Pending')
-        ->orderBy('complaints.id', 'desc')
-        ->get();
+        ->where('complaints.approval_status', 'Pending');
+
+        if(auth()->user()->roles->pluck('name')[0] == 'Department')
+        {
+            $query->whereRaw("FIND_IN_SET(?, complaints.departments)", [auth()->user()->department]);
+        }
+
+        $complaintsLists = $query->orderBy('complaints.id', 'desc')->get();
         return view('Complaints.list')->with(['complaintsLists' => $complaintsLists]);
     }
 
