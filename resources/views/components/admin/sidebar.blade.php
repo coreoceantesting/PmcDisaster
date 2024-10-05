@@ -89,6 +89,20 @@
                 </li>
                 @endcan
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('complaints.create') }}" >
+                        <i class="ri-add-circle-fill"></i>
+                        <span data-key="t-circle">Complaint Register </span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('complaints.index') }}" >
+                        <i class="ri-list-unordered"></i>
+                        <span data-key="t-circle">Complaints List</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>
