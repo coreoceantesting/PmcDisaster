@@ -110,6 +110,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('closedComplaintList') }}" >
+                        <i class="ri-close-circle-fill"></i>
+                        <span data-key="t-circle">Closed Complaints List</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>
