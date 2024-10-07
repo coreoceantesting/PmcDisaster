@@ -89,8 +89,9 @@ class ComplaintsController extends Controller
         $departmentIds = explode(',', $complaintsDetail->departments);
         $departments = Department::whereIn('id', $departmentIds)->pluck('department_name')->toArray();
         $departmentNames = implode(', ', $departments);
+        $departmentList = Department::latest()->get(['id', 'department_name']);
 
-        return view('Complaints.view')->with(['complaintsDetail' => $complaintsDetail, 'departmentNames' => $departmentNames]);
+        return view('Complaints.view')->with(['complaintsDetail' => $complaintsDetail, 'departmentNames' => $departmentNames, 'departmentList' => $departmentList]);
     }
 
     /**
@@ -169,6 +170,69 @@ class ComplaintsController extends Controller
     {
         $subtypes = ComplaintSubType::where('complaint_type', $request->complaint_type_id)->get();
         return response()->json($subtypes);
+    }
+
+    public function accepetedComplaintList()
+    {
+        $query = Complaint::join('complaint_types', 'complaints.complaint_type', '=', 'complaint_types.id')
+        ->join('complaint_sub_types', 'complaints.complaint_sub_type', '=', 'complaint_sub_types.id')
+        ->select('complaints.*','complaint_types.complaint_type_name', 'complaint_sub_types.complaint_sub_type_name')
+        ->where('complaints.approval_status', 'Approved');
+
+        if(auth()->user()->roles->pluck('name')[0] == 'Department')
+        {
+            $query->whereRaw("FIND_IN_SET(?, complaints.departments)", [auth()->user()->department]);
+        }
+
+        $complaintsLists = $query->orderBy('complaints.id', 'desc')->get();
+        return view('Complaints.approvedList')->with(['complaintsLists' => $complaintsLists]);
+    }
+
+    public function accepetComplaint(Request $request)
+    {
+        try
+        {
+            DB::beginTransaction();
+            $complaintId = $request->input('id');
+            $remark = $request->input('remark');
+
+            DB::table('complaints')->where('id', $complaintId)->update([
+                'approval_status' => 'Approved',
+                'approval_remark' => $remark,
+                'approval_by' => auth()->user()->id,
+                'approval_at' => now()
+            ]);
+            
+            DB::commit();
+
+            return response()->json(['success'=> 'Complaint Approved Successfully!']);
+        }
+        catch(\Exception $e)
+        {
+            return $this->respondWithAjax($e, 'Approving', 'Complaint');
+        }
+    }
+
+    public function transferComplaint(Request $request)
+    {
+        try
+        {
+            DB::beginTransaction();
+            $complaintId = $request->input('transferComplaintId');
+            $departments = implode(',', $request->input('departments'));
+
+            DB::table('complaints')->where('id', $complaintId)->update([
+                'departments' => $departments,
+            ]);
+            
+            DB::commit();
+
+            return response()->json(['success'=> 'Complaint Transfered Successfully!']);
+        }
+        catch(\Exception $e)
+        {
+            return $this->respondWithAjax($e, 'transfering', 'Complaint');
+        }
     }
 
 }

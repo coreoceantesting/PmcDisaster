@@ -103,6 +103,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('accepetedComplaintList') }}" >
+                        <i class="ri-list-check-3"></i>
+                        <span data-key="t-circle">Accepted Complaints List</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>

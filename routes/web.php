@@ -51,6 +51,9 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     Route::resource('complaintSubTypes', App\Http\Controllers\Admin\Masters\ComplaintSubTypeController::class);
     Route::resource('complaints', App\Http\Controllers\Complaints\ComplaintsController::class);
     Route::get('/complaint-sub-types', [App\Http\Controllers\Complaints\ComplaintsController::class, 'getComplaintSubTypes']);
+    Route::get('/accepeted-complaint-list', [App\Http\Controllers\Complaints\ComplaintsController::class, 'accepetedComplaintList'])->name('accepetedComplaintList');
+    Route::post('/accepet-complaint', [App\Http\Controllers\Complaints\ComplaintsController::class, 'accepetComplaint'])->name('accept.complaint');
+    Route::post('/transfer-complaint', [App\Http\Controllers\Complaints\ComplaintsController::class, 'transferComplaint'])->name('transfer.complaint');
 
 
 
