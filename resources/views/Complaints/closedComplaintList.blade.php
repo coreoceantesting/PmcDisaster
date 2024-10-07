@@ -29,7 +29,7 @@
                                             <td>{{ $list->caller_name }}</td>
                                             <td>{{ $list->caller_mobile_no }}</td>
                                             <td>
-                                                <a href="{{ route('complaints.show', $list->id) }}" class="view-element btn btn-sm btn-primary px-2 py-1" title="View Complaint" data-id="{{ $list->id }}"><i class="ri-eye-line"></i></a>
+                                                <a href="{{ route('viewComplaintDetails', $list->id) }}" class="view-element btn btn-sm btn-primary px-2 py-1" title="View Complaint" data-id="{{ $list->id }}"><i class="ri-eye-line"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

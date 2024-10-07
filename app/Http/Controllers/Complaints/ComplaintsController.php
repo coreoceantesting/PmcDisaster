@@ -236,4 +236,26 @@ class ComplaintsController extends Controller
         }
     }
 
+    public function viewComplaintDetails(Request $request, $id)
+    {
+        $complaintsDetail = Complaint::join('complaint_types', 'complaints.complaint_type', '=', 'complaint_types.id')
+        ->join('complaint_sub_types', 'complaints.complaint_sub_type', '=', 'complaint_sub_types.id')
+        ->join('closure_details', 'complaints.id', '=', 'closure_details.complaint_id')
+        ->select('complaints.*','complaint_types.complaint_type_name', 'complaint_sub_types.complaint_sub_type_name', 'closure_details.*')
+        ->where('complaints.id', $id)
+        ->first();
+
+        $closureDetails = DB::table('closure_details')->where('complaint_id', $id)->count();
+
+        $departmentIds = explode(',', $complaintsDetail->departments);
+        $departments = Department::whereIn('id', $departmentIds)->pluck('department_name')->toArray();
+        $departmentNames = implode(', ', $departments);
+
+        return view('Complaints.finalView')->with([
+            'complaintsDetail' => $complaintsDetail,
+            'departmentNames' => $departmentNames,
+            'closureDetails' => $closureDetails
+        ]);
+    }
+
 }
