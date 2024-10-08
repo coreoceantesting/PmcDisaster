@@ -62,6 +62,7 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     // reports
     Route::get('/departmentwise-report', [App\Http\Controllers\Complaints\ReportController::class, 'departmentWiseReport'])->name('departmentWiseReport');
     Route::get('/daywise-call-report', [App\Http\Controllers\Complaints\ReportController::class, 'dayWiseCallReport'])->name('dayWiseCallReport');
+    Route::get('/daywise-call-report-pdf', [App\Http\Controllers\Complaints\ReportController::class, 'dayWiseCallReportPdf'])->name('dayWiseCallReportPdf');
 
 
 
