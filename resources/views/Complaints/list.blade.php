@@ -30,8 +30,12 @@
                                             <td>{{ $list->caller_mobile_no }}</td>
                                             <td>
                                                 <a href="{{ route('complaints.show', $list->id) }}" class="view-element btn btn-sm btn-primary px-2 py-1" title="View Complaint" data-id="{{ $list->id }}"><i class="ri-eye-line"></i></a>
-                                                <a href="{{ route('complaints.edit', $list->id) }}" class="edit-element btn btn-sm btn-warning px-2 py-1" title="Edit Complaint" data-id="{{ $list->id }}"><i class="ri-edit-box-line"></i></a>
-                                                <button class="btn btn-sm btn-dark rem-element px-2 py-1" title="Delete Complaint" data-id="{{ $list->id }}"><i data-feather="trash-2"></i> </button>
+                                                @can(['complaints.edit'])   
+                                                    <a href="{{ route('complaints.edit', $list->id) }}" class="edit-element btn btn-sm btn-warning px-2 py-1" title="Edit Complaint" data-id="{{ $list->id }}"><i class="ri-edit-box-line"></i></a>
+                                                @endcan
+                                                @can(['complaints.delete'])
+                                                    <button class="btn btn-sm btn-dark rem-element px-2 py-1" title="Delete Complaint" data-id="{{ $list->id }}"><i data-feather="trash-2"></i> </button>    
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

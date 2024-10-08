@@ -89,12 +89,14 @@
                 </li>
                 @endcan
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('complaints.create') }}" >
-                        <i class="ri-add-circle-fill"></i>
-                        <span data-key="t-circle">Complaint Register </span>
-                    </a>
-                </li>
+                @can(['complaints.create'])
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="{{ route('complaints.create') }}" >
+                            <i class="ri-add-circle-fill"></i>
+                            <span data-key="t-circle">Complaint Register </span>
+                        </a>
+                    </li>
+                @endcan
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('complaints.index') }}" >
@@ -103,20 +105,42 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('accepetedComplaintList') }}" >
-                        <i class="ri-list-check-3"></i>
-                        <span data-key="t-circle">Accepted Complaints List</span>
-                    </a>
-                </li>
+                @can(['complaints.AcceptedList'])
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="{{ route('accepetedComplaintList') }}" >
+                            <i class="ri-list-check-3"></i>
+                            <span data-key="t-circle">Accepted Complaints List</span>
+                        </a>
+                    </li>
+                @endcan
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('closedComplaintList') }}" >
-                        <i class="ri-close-circle-fill"></i>
-                        <span data-key="t-circle">Closed Complaints List</span>
-                    </a>
-                </li>
+                @can(['complaints.ClosedList'])
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="{{ route('closedComplaintList') }}" >
+                            <i class="ri-close-circle-fill"></i>
+                            <span data-key="t-circle">Closed Complaints List</span>
+                        </a>
+                    </li>
+                @endcan
 
+                @can(['complaints.reports'])
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarLayoutstwo" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                            <i class="ri-folder-chart-fill"></i>
+                            <span data-key="t-layouts">Reports</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="sidebarLayoutstwo">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{ route('departmentWiseReport') }}" class="nav-link" data-key="t-horizontal">Department Wise Report</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('dayWiseCallReport') }}" class="nav-link" data-key="t-horizontal">Day Wise Call Report</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endcan
             </ul>
         </div>
     </div>
