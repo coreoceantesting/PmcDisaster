@@ -170,4 +170,32 @@
     });
 </script>
 
+<script>
+    document.getElementById('caller_mobile_no').addEventListener('input', function (event) {
+        const mobileInput = event.target;
+        const errorMessage = document.querySelector('.caller_mobile_no_err');
+        let mobileNumber = mobileInput.value;
+
+        // Remove any non-digit characters
+        mobileNumber = mobileNumber.replace(/\D/g, '');
+
+        // Restrict input to 10 digits only
+        if (mobileNumber.length > 10) {
+            mobileNumber = mobileNumber.slice(0, 10);
+        }
+
+        mobileInput.value = mobileNumber;
+
+        // Check if the input is exactly 10 digits
+        if (mobileNumber.length !== 10 && mobileNumber.length > 0) {
+            // Show error message
+            errorMessage.textContent = "Mobile number must be exactly 10 digits.";
+            mobileInput.classList.add('is-invalid');
+        } else {
+            // Clear the error message if valid
+            errorMessage.textContent = "";
+            mobileInput.classList.remove('is-invalid');
+        }
+    });
+</script>
 
