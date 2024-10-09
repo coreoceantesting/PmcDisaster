@@ -200,22 +200,6 @@
     });
 </script>
 
-<div class="col-md-4">
-    <label class="col-form-label" for="caller_mobile_no">Caller Mobile No <span class="text-danger">*</span></label>
-    <input 
-        class="form-control" 
-        id="caller_mobile_no" 
-        name="caller_mobile_no" 
-        type="text" 
-        placeholder="Enter Caller Mobile No" 
-        required
-        maxlength="10"
-    >
-    <span class="text-danger is-invalid caller_mobile_no_err"></span>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
     $(document).ready(function() {
         $('#caller_mobile_no').on('input', function() {
