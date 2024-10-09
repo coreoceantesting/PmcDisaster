@@ -128,6 +128,12 @@ class PermissionTableSeeder extends Seeder
 
             [
                 'id' => 23,
+                'name' => 'complaints.closecall',
+                'group' => 'complaints',
+            ],
+
+            [
+                'id' => 24,
                 'name' => 'masters.all',
                 'group' => 'masters',
             ],
