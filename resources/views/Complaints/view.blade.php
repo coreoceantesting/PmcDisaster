@@ -50,7 +50,14 @@
                                 @endif
                             </td>
                             <th>Accpeted Status</th>
-                            <td><span class="badge" style="background-color: black"> {{ $complaintsDetail->approval_status }} </span></td>
+                            @php
+                                $color = ($complaintsDetail->approval_status == "Approved") ? 'green' : 'black';
+                            @endphp
+                            <td>
+                                <span class="badge" style="background-color: {{ $color }};">
+                                    {{ $complaintsDetail->approval_status }}
+                                </span>
+                            </td>
                         </tr>
                         <tr>
                             <th>Approval Remark</th>
