@@ -125,6 +125,12 @@ class PermissionTableSeeder extends Seeder
                 'name' => 'complaints.reports',
                 'group' => 'complaints',
             ],
+
+            [
+                'id' => 23,
+                'name' => 'masters.all',
+                'group' => 'masters',
+            ],
         ];
 
         foreach ($permissions as $permission)
