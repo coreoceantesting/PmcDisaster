@@ -734,3 +734,36 @@
         }
     });
 </script>
+
+
+{{-- mobile no validation --}}
+<script>
+    $(document).ready(function() {
+        $('#mobile').on('input', function() {
+            const mobileInput = $(this);
+            const errorMessage = $('.mobile_err');
+            let mobileNumber = mobileInput.val();
+
+            // Remove any non-digit characters
+            mobileNumber = mobileNumber.replace(/\D/g, '');
+
+            // Restrict input to 10 digits only
+            if (mobileNumber.length > 10) {
+                mobileNumber = mobileNumber.slice(0, 10);
+            }
+
+            mobileInput.val(mobileNumber);
+
+            // Check if the input is exactly 10 digits
+            if (mobileNumber.length !== 10 && mobileNumber.length > 0) {
+                // Show error message
+                errorMessage.text("Mobile number must be exactly 10 digits.");
+                mobileInput.addClass('is-invalid');
+            } else {
+                // Clear the error message if valid
+                errorMessage.text("");
+                mobileInput.removeClass('is-invalid');
+            }
+        });
+    });
+</script>
