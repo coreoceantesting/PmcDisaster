@@ -170,32 +170,50 @@
     });
 </script>
 
+<div class="col-md-4">
+    <label class="col-form-label" for="caller_mobile_no">Caller Mobile No <span class="text-danger">*</span></label>
+    <input 
+        class="form-control" 
+        id="caller_mobile_no" 
+        name="caller_mobile_no" 
+        type="text" 
+        placeholder="Enter Caller Mobile No" 
+        required
+        maxlength="10"
+    >
+    <span class="text-danger is-invalid caller_mobile_no_err"></span>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    document.getElementById('caller_mobile_no').addEventListener('input', function (event) {
-        const mobileInput = event.target;
-        const errorMessage = document.querySelector('.caller_mobile_no_err');
-        let mobileNumber = mobileInput.value;
+    $(document).ready(function() {
+        $('#caller_mobile_no').on('input', function() {
+            const mobileInput = $(this);
+            const errorMessage = $('.caller_mobile_no_err');
+            let mobileNumber = mobileInput.val();
 
-        // Remove any non-digit characters
-        mobileNumber = mobileNumber.replace(/\D/g, '');
+            // Remove any non-digit characters
+            mobileNumber = mobileNumber.replace(/\D/g, '');
 
-        // Restrict input to 10 digits only
-        if (mobileNumber.length > 10) {
-            mobileNumber = mobileNumber.slice(0, 10);
-        }
+            // Restrict input to 10 digits only
+            if (mobileNumber.length > 10) {
+                mobileNumber = mobileNumber.slice(0, 10);
+            }
 
-        mobileInput.value = mobileNumber;
+            mobileInput.val(mobileNumber);
 
-        // Check if the input is exactly 10 digits
-        if (mobileNumber.length !== 10 && mobileNumber.length > 0) {
-            // Show error message
-            errorMessage.textContent = "Mobile number must be exactly 10 digits.";
-            mobileInput.classList.add('is-invalid');
-        } else {
-            // Clear the error message if valid
-            errorMessage.textContent = "";
-            mobileInput.classList.remove('is-invalid');
-        }
+            // Check if the input is exactly 10 digits
+            if (mobileNumber.length !== 10 && mobileNumber.length > 0) {
+                // Show error message
+                errorMessage.text("Mobile number must be exactly 10 digits.");
+                mobileInput.addClass('is-invalid');
+            } else {
+                // Clear the error message if valid
+                errorMessage.text("");
+                mobileInput.removeClass('is-invalid');
+            }
+        });
     });
 </script>
+
 
