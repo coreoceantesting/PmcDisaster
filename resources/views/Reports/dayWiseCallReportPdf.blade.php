@@ -57,7 +57,7 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $list->complaint_unique_id }}</td>
-                    <td>{{ \Carbon\Carbon::parse($list->created_at)->format('Y-m-d H:i:s') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($list->created_at)->setTimezone('Asia/Kolkata')->format('Y-m-d h:i:s A') }}</td>
                     <td>{{ $list->caller_name }}</td>
                     <td>{{ $list->caller_address }} <br> {{ $list->caller_mobile_no }} </td>
                     <td>{{ $list->no_of_male_death }}</td>
