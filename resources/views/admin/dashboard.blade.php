@@ -54,18 +54,18 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="card card-animate">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color: #3fcda6">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <p class="fw-medium text-muted mb-0">
-                                            Users
+                                        <p class="fw-medium mb-0">
+                                            Total Complaints
                                         </p>
-                                        <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value" data-target="28.05">0</span>k
+                                        <h2 class="mt-4 ff-secondary fw-semibold text-dark">
+                                            <span class="counter-value" data-target="{{ $complaintsLists->total_count }}">{{ $complaintsLists->total_count }}</span>
                                         </h2>
-                                        <p class="mb-0 text-muted">
+                                        <p class="mb-0 text-muted d-none">
                                             <span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>
                                                 16.24 %
                                             </span>
@@ -74,7 +74,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <div class="avatar-sm flex-shrink-0">
+                                        <div class="avatar-sm flex-shrink-0 d-none">
                                             <span class="avatar-title bg-info-subtle rounded-circle fs-2">
                                                 <i data-feather="users" class="text-info"></i>
                                             </span>
@@ -88,18 +88,18 @@
                     </div>
                     <!-- end col-->
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="card card-animate">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color: #3f9dcd">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <p class="fw-medium text-muted mb-0">
-                                            Sessions
+                                        <p class="fw-medium mb-0">
+                                            Pending
                                         </p>
-                                        <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value" data-target="97.66">0</span>k
+                                        <h2 class="mt-4 ff-secondary fw-semibold text-dark">
+                                            <span class="counter-value" data-target="{{ $complaintsLists->pending_count }}">{{ $complaintsLists->pending_count }}</span>
                                         </h2>
-                                        <p class="mb-0 text-muted">
+                                        <p class="mb-0 text-muted d-none">
                                             <span class="badge bg-light text-danger mb-0">
                                                 <i class="ri-arrow-down-line align-middle"></i>
                                                 3.96 %
@@ -109,7 +109,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <div class="avatar-sm flex-shrink-0">
+                                        <div class="avatar-sm flex-shrink-0 d-none">
                                             <span class="avatar-title bg-info-subtle rounded-circle fs-2">
                                                 <i data-feather="activity" class="text-info"></i>
                                             </span>
@@ -122,35 +122,31 @@
                         <!-- end card-->
                     </div>
                     <!-- end col-->
-                </div>
 
-                <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="card card-animate">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color: peru">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <p class="fw-medium text-muted mb-0">
-                                            Avg. Visit
-                                            Duration
+                                        <p class="fw-medium mb-0">
+                                            Closed
                                         </p>
-                                        <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value" data-target="3">0</span>m
-                                            <span class="counter-value" data-target="40">0</span>sec
+                                        <h2 class="mt-4 ff-secondary fw-semibold text-dark">
+                                            <span class="counter-value" data-target="{{ $complaintsLists->closed_count }}">{{ $complaintsLists->closed_count }}</span>
                                         </h2>
-                                        <p class="mb-0 text-muted">
+                                        <p class="mb-0 text-muted d-none">
                                             <span class="badge bg-light text-danger mb-0">
                                                 <i class="ri-arrow-down-line align-middle"></i>
-                                                0.24 %
+                                                3.96 %
                                             </span>
                                             vs. previous
                                             month
                                         </p>
                                     </div>
                                     <div>
-                                        <div class="avatar-sm flex-shrink-0">
+                                        <div class="avatar-sm flex-shrink-0 d-none">
                                             <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                <i data-feather="clock" class="text-info"></i>
+                                                <i data-feather="activity" class="text-info"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -161,35 +157,71 @@
                         <!-- end card-->
                     </div>
                     <!-- end col-->
+                    
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card border-primary card-height-100">
+                            <div class="card-header bg-primary align-items-center d-flex">
+                                <h4 class="card-title text-white mb-0 flex-grow-1">Pending Complaint</h4>
+                                <div class="flex-shrink-0">
+                                    <a href="{{ route('complaints.index') }}" class="btn btn-sm btn-info">View All</a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table id="pending_complaint" class="table table-bordered nowrap align-middle" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr.No</th>
+                                            <th>Caller Name</th>
+                                            <th>Caller Mobile No</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($pendingComplaintsLists as $index => $list)
+                                            <tr>
+                                                <td>{{ $index + 1 }}</td>
+                                                <td>{{ $list->caller_name }}</td>
+                                                <td>{{ $list->caller_mobile_no }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                        <!-- end card-->
+                    </div>
+                    <!-- end col-->
 
                     <div class="col-md-6">
-                        <div class="card card-animate">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <p class="fw-medium text-muted mb-0">
-                                            Bounce Rate
-                                        </p>
-                                        <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value" data-target="33.48">0</span>%
-                                        </h2>
-                                        <p class="mb-0 text-muted">
-                                            <span class="badge bg-light text-success mb-0">
-                                                <i class="ri-arrow-up-line align-middle"></i>
-                                                7.05 %
-                                            </span>
-                                            vs. previous
-                                            month
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                <i data-feather="external-link" class="text-info"></i>
-                                            </span>
-                                        </div>
-                                    </div>
+                        <div class="card border-primary card-height-100">
+                            <div class="card-header bg-primary align-items-center d-flex">
+                                <h4 class="card-title text-white mb-0 flex-grow-1">Closed Complaint</h4>
+                                <div class="flex-shrink-0">
+                                    <a href="{{ route('closedComplaintList') }}" class="btn btn-sm btn-info">View All</a>
                                 </div>
+                            </div>
+                            <div class="card-body">
+                                <table id="closed_complaint" class="table table-bordered nowrap align-middle" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr.No</th>
+                                            <th>Caller Name</th>
+                                            <th>Caller Mobile No</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($closedComplaintsLists as $index => $list)
+                                            <tr>
+                                                <td>{{ $index + 1 }}</td>
+                                                <td>{{ $list->caller_name }}</td>
+                                                <td>{{ $list->caller_mobile_no }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                             <!-- end card body -->
                         </div>
@@ -311,3 +343,8 @@
     @endpush
 
 </x-admin.layout>
+
+<script>
+     $('#closed_complaint,#pending_complaint').dataTable({searching: false, paging: false, info: false});
+</script>
+
