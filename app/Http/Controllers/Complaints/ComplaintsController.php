@@ -89,7 +89,7 @@ class ComplaintsController extends Controller
         $departmentIds = explode(',', $complaintsDetail->departments);
         $departments = Department::whereIn('id', $departmentIds)->pluck('department_name')->toArray();
         $departmentNames = implode(', ', $departments);
-        $departmentList = Department::latest()->get(['id', 'department_name']);
+        $departmentList = Department::whereNot('id', auth()->user()->department)->latest()->get(['id', 'department_name']);
 
         return view('Complaints.view')->with(['complaintsDetail' => $complaintsDetail, 'departmentNames' => $departmentNames, 'departmentList' => $departmentList]);
     }

@@ -114,7 +114,7 @@
                             <div class="mb-3">
                                 <label for="departments" class="form-label">Departments</label>
                                 <select class="js-example-basic-single" name="departments[]" id="departments" multiple required>
-                                    <option value="">Select Department</option>
+                                    <option value="" disabled>Select Department</option>
                                     @foreach ($departmentList as $item)
                                         <option value="{{ $item->id }}">{{ $item->department_name }}</option>
                                     @endforeach

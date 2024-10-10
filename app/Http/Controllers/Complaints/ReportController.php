@@ -62,6 +62,7 @@ class ReportController extends Controller
         $query = Complaint::leftJoin('complaint_types', 'complaints.complaint_type', '=', 'complaint_types.id')
             ->leftJoin('complaint_sub_types', 'complaints.complaint_sub_type', '=', 'complaint_sub_types.id')
             ->leftJoin('closure_details', 'complaints.id', '=', 'closure_details.complaint_id')
+            ->where('complaints.approval_status', 'Approved')
             ->select(
                 'complaints.*',
                 'complaint_types.complaint_type_name',
