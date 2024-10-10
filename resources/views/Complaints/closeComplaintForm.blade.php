@@ -134,7 +134,29 @@
 <script>
     $(document).on('input', '.numeric-only', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
+        updateTotalInjured();
+        updateTotalDeath()
     });
+
+    function updateTotalInjured() {
+        const maleInjured = parseInt($('#no_of_male_injured').val()) || 0;
+        const femaleInjured = parseInt($('#no_of_female_injured').val()) || 0;
+        const childInjured = parseInt($('#no_of_child_injured').val()) || 0;
+
+        const totalInjured = maleInjured + femaleInjured + childInjured;
+
+        $('#total_injured').val(totalInjured);
+    }
+
+    function updateTotalDeath() {
+        const maleDeath = parseInt($('#no_of_male_death').val()) || 0;
+        const femaleDeath = parseInt($('#no_of_female_death').val()) || 0;
+        const childDeath = parseInt($('#no_of_child_death').val()) || 0;
+
+        const totalDeath = maleDeath + femaleDeath + childDeath;
+
+        $('#total_death').val(totalDeath);
+    }
 </script>
 
 
