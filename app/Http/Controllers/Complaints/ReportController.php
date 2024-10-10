@@ -12,13 +12,14 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Mpdf\Mpdf;
+use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
     public function departmentWiseReport(Request $request)
     {
 
-        $complaintsLists = DB::table('departments')
+        $complaintsQuery = DB::table('departments')
         ->whereNull('departments.deleted_by')
         ->leftJoin('complaints', function ($join) {
             $join->whereRaw("FIND_IN_SET(departments.id, complaints.departments)");
@@ -29,9 +30,13 @@ class ReportController extends Controller
             DB::raw('COUNT(complaints.id) as total_count'),
             DB::raw('SUM(complaints.approval_status = "Pending") as pending_count'),
             DB::raw('SUM(complaints.approval_status = "Approved" AND complaints.closing_status = "Closed") as closed_count')
-        )
-        ->groupBy('departments.id', 'departments.department_name')
-        ->get();
+        );
+
+        if (Auth::user()->roles->pluck('name')[0] == "Department") {
+            $complaintsQuery->where('departments.id', auth()->user()->department);
+        }
+
+        $complaintsLists = $complaintsQuery->groupBy('departments.id', 'departments.department_name')->get();
 
         return view('Reports.departmentWiseReport')->with(['complaintsLists' => $complaintsLists]);
     }
@@ -68,6 +73,10 @@ class ReportController extends Controller
                 'closure_details.no_of_female_death',
                 'closure_details.no_of_child_death'
             );
+
+        if (Auth::user()->roles->pluck('name')[0] == "Department") {
+            $query->whereRaw("FIND_IN_SET(?, complaints.departments)", [auth()->user()->department]);
+        }
 
         // Conditionally add the date filter if both fromdate and todate are provided
         if ($fromdate && $todate) {
