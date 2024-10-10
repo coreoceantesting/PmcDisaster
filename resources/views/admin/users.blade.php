@@ -250,25 +250,46 @@
                         <input type="hidden" id="user_id" name="user_id" value="">
 
                         <div class="col-8 mx-auto my-2">
-                            <div class="form-group">
+
+                            <label class="col-form-label" for="password-input">New Password <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input type="password" class="form-control new-password-input" placeholder="Enter New password" id="new_password" name="new_password">
+                                <button class="btn btn-outline-secondary" type="button" id="new-password-addon">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <span class="text-danger is-invalid password_err"></span>
+
+                            {{-- <div class="form-group">
                                 <label>Password</label>
                                 <div class="input-group"><span class="input-group-text"><i class="fas fa-unlock-keyhole"></i></span>
                                     <input class="form-control" type="password" id="new_password" name="new_password">
-                                    {{-- <div class="show-hide"><span class="show"></span></div> --}}
+                                    <div class="show-hide"><span class="show"></span></div>
                                 </div>
                                 <span class="text-danger is-invalid password_err"></span>
-                            </div>
+                            </div> --}}
+                            
                         </div>
 
                         <div class="col-8 mx-auto my-2">
-                            <div class="form-group">
+                            <label class="col-form-label" for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input type="password" class="form-control new-confirm-password-input" placeholder="********" id="confirmed_password" name="confirmed_password">
+                                <button class="btn btn-outline-secondary" type="button" id="new-confirm-password-addon">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <span class="text-danger is-invalid confirmed_password_err"></span>
+
+                            {{-- <div class="form-group">
                                 <label>Confirm Password</label>
                                 <div class="input-group"><span class="input-group-text"><i class="fas fa-unlock-keyhole"></i></span>
                                     <input class="form-control" type="password" id="confirmed_password" name="confirmed_password">
-                                    {{-- <div class="show-hide"><span class="show"></span></div> --}}
+                                    <div class="show-hide"><span class="show"></span></div>
                                 </div>
                                 <span class="text-danger is-invalid confirmed_password_err"></span>
-                            </div>
+                            </div> --}}
+
                         </div>
 
                     </div>
@@ -721,6 +742,42 @@
 <script>
     document.getElementById('confirm-password-addon').addEventListener('click', function () {
         var passwordInput = document.getElementById('confirm_password');
+        var icon = this.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+</script>
+
+{{-- show password --}}
+<script>
+    document.getElementById('new-password-addon').addEventListener('click', function () {
+        var passwordInput = document.getElementById('new_password');
+        var icon = this.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+</script>
+
+{{-- show confirm password --}}
+<script>
+    document.getElementById('new-confirm-password-addon').addEventListener('click', function () {
+        var passwordInput = document.getElementById('confirmed_password');
         var icon = this.querySelector('i');
         
         if (passwordInput.type === 'password') {
