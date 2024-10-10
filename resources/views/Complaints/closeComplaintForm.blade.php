@@ -18,49 +18,49 @@
                                 <input type="hidden" name="complaint_id" id="complaint_id" value="{{ $complaintDetail->id }}">
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="no_of_male_injured">No Of Male Injured</label>
-                                    <input class="form-control" id="no_of_male_injured" name="no_of_male_injured" value="0" type="number" placeholder="Enter No Of Male Injured">
+                                    <input class="form-control numeric-only" id="no_of_male_injured" name="no_of_male_injured" value="0" type="number" placeholder="Enter No Of Male Injured" min="0">
                                     <span class="text-danger is-invalid no_of_male_injured_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="no_of_female_injured">No Of Female Injured</label>
-                                    <input class="form-control" id="no_of_female_injured" name="no_of_female_injured" value="0" type="number" placeholder="Enter No Of Female Injured">
+                                    <input class="form-control numeric-only" id="no_of_female_injured" name="no_of_female_injured" value="0" type="number" placeholder="Enter No Of Female Injured" min="0">
                                     <span class="text-danger is-invalid no_of_female_injured_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="no_of_child_injured">No Of Child Injured</label>
-                                    <input class="form-control" id="no_of_child_injured" name="no_of_child_injured" value="0" type="number" placeholder="Enter No Of Child Injured">
+                                    <input class="form-control numeric-only" id="no_of_child_injured" name="no_of_child_injured" value="0" type="number" placeholder="Enter No Of Child Injured" min="0">
                                     <span class="text-danger is-invalid no_of_child_injured_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="total_injured">Total Injured</label>
-                                    <input class="form-control" id="total_injured" name="total_injured" type="number" value="0" placeholder="Enter No Of Total Injured">
+                                    <input class="form-control numeric-only" id="total_injured" name="total_injured" type="number" value="0" placeholder="Enter No Of Total Injured" min="0">
                                     <span class="text-danger is-invalid total_injured_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="no_of_male_death">No Of Male Death</label>
-                                    <input class="form-control" id="no_of_male_death" name="no_of_male_death" value="0" type="number" placeholder="Enter No Of Male Death">
+                                    <input class="form-control numeric-only" id="no_of_male_death" name="no_of_male_death" value="0" type="number" placeholder="Enter No Of Male Death" min="0">
                                     <span class="text-danger is-invalid no_of_male_death_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="no_of_female_death">No Of Female Death</label>
-                                    <input class="form-control" id="no_of_female_death" name="no_of_female_death" value="0" type="number" placeholder="Enter No Of Female Death">
+                                    <input class="form-control numeric-only" id="no_of_female_death" name="no_of_female_death" value="0" type="number" placeholder="Enter No Of Female Death" min="0">
                                     <span class="text-danger is-invalid no_of_female_death_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="no_of_child_death">No Of Child Death</label>
-                                    <input class="form-control" id="no_of_child_death" name="no_of_child_death" value="0" type="number" placeholder="Enter No Of Child Death">
+                                    <input class="form-control numeric-only" id="no_of_child_death" name="no_of_child_death" value="0" type="number" placeholder="Enter No Of Child Death" min="0">
                                     <span class="text-danger is-invalid no_of_child_death_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="total_death">Total Death</label>
-                                    <input class="form-control" id="total_death" name="total_death" type="number" value="0" placeholder="Enter No Of Total Death">
+                                    <input class="form-control numeric-only" id="total_death" name="total_death" type="number" value="0" placeholder="Enter No Of Total Death" min="0">
                                     <span class="text-danger is-invalid total_death_err"></span>
                                 </div>
 
@@ -128,6 +128,12 @@
             }
         });
 
+    });
+</script>
+
+<script>
+    $(document).on('input', '.numeric-only', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
     });
 </script>
 
