@@ -41,25 +41,25 @@
 
                 @canany(['masters.all'])
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                        <a class="nav-link menu-link {{ request()->routeIs('departments.index') || request()->routeIs('complaintTypes.index') || request()->routeIs('complaintSubTypes.index')  ? 'active' : 'collapsed' }}" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                             <i class="ri-layout-3-line"></i>
                             <span data-key="t-layouts">Masters</span>
                         </a>
-                        <div class="collapse menu-dropdown" id="sidebarLayouts">
+                        <div class="collapse menu-dropdown {{ request()->routeIs('departments.index') || request()->routeIs('complaintTypes.index') || request()->routeIs('complaintSubTypes.index')  ? 'show' : '' }}" id="sidebarLayouts">
                             <ul class="nav nav-sm flex-column">
                                 {{-- <li class="nav-item">
                                     <a href="{{ route('wards.index') }}" class="nav-link" data-key="t-horizontal">Wards</a>
                                 </li> --}}
                                 <li class="nav-item">
-                                    <a href="{{ route('departments.index') }}" class="nav-link" data-key="t-horizontal">Department</a>
+                                    <a href="{{ route('departments.index') }}" class="nav-link {{ request()->routeIs('departments.index') ? 'active' : '' }}" data-key="t-horizontal">Department</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{{ route('complaintTypes.index') }}" class="nav-link" data-key="t-horizontal">Complaint Type</a>
+                                    <a href="{{ route('complaintTypes.index') }}" class="nav-link {{ request()->routeIs('complaintTypes.index') ? 'active' : '' }}" data-key="t-horizontal">Complaint Type</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{{ route('complaintSubTypes.index') }}" class="nav-link" data-key="t-horizontal">Complaint Sub Type</a>
+                                    <a href="{{ route('complaintSubTypes.index') }}" class="nav-link {{ request()->routeIs('complaintSubTypes.index') ? 'active' : '' }}" data-key="t-horizontal">Complaint Sub Type</a>
                                 </li>
                             </ul>
                         </div>
@@ -69,20 +69,20 @@
 
                 @canany(['users.view', 'roles.view'])
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarLayoutsone" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                    <a class="nav-link menu-link {{ request()->routeIs('users.index') || request()->routeIs('roles.index') ? 'active' : 'collapsed' }}" href="#sidebarLayoutsone" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                         <i class="bx bx-user-circle"></i>
                         <span data-key="t-layouts">User Management</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="sidebarLayoutsone">
+                    <div class="collapse menu-dropdown {{ request()->routeIs('users.index') || request()->routeIs('roles.index') ? 'show' : '' }}" id="sidebarLayoutsone">
                         <ul class="nav nav-sm flex-column">
                             @can('users.view')
                                 <li class="nav-item">
-                                    <a href="{{ route('users.index') }}" class="nav-link" data-key="t-horizontal">Users</a>
+                                    <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}" data-key="t-horizontal">Users</a>
                                 </li>
                             @endcan
                             @can('roles.view')
                                 <li class="nav-item">
-                                    <a href="{{ route('roles.index') }}" class="nav-link" data-key="t-horizontal">Roles</a>
+                                    <a href="{{ route('roles.index') }}" class="nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}" data-key="t-horizontal">Roles</a>
                                 </li>
                             @endcan
                         </ul>
@@ -92,7 +92,7 @@
 
                 @can(['complaints.create'])
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="{{ route('complaints.create') }}" >
+                        <a class="nav-link menu-link {{ request()->routeIs('complaints.create') ? 'active' : '' }}" href="{{ route('complaints.create') }}" >
                             <i class="ri-add-circle-fill"></i>
                             <span data-key="t-circle">Complaint Register </span>
                         </a>
@@ -100,7 +100,7 @@
                 @endcan
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('complaints.index') }}" >
+                    <a class="nav-link menu-link {{ request()->routeIs('complaints.index') ? 'active' : '' }}" href="{{ route('complaints.index') }}" >
                         <i class="ri-list-unordered"></i>
                         <span data-key="t-circle">Complaints List</span>
                     </a>
@@ -108,7 +108,7 @@
 
                 @can(['complaints.AcceptedList'])
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="{{ route('accepetedComplaintList') }}" >
+                        <a class="nav-link menu-link {{ request()->routeIs('accepetedComplaintList') ? 'active' : '' }}" href="{{ route('accepetedComplaintList') }}" >
                             <i class="ri-list-check-3"></i>
                             <span data-key="t-circle">Accepted Complaints List</span>
                         </a>
@@ -117,7 +117,7 @@
 
                 @can(['complaints.ClosedList'])
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="{{ route('closedComplaintList') }}" >
+                        <a class="nav-link menu-link {{ request()->routeIs('closedComplaintList') ? 'active' : '' }}" href="{{ route('closedComplaintList') }}" >
                             <i class="ri-close-circle-fill"></i>
                             <span data-key="t-circle">Closed Complaints List</span>
                         </a>
@@ -126,17 +126,17 @@
 
                 @can(['complaints.reports'])
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#sidebarLayoutstwo" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                        <a class="nav-link menu-link {{ request()->routeIs('departmentWiseReport') || request()->routeIs('dayWiseCallReport') ? 'active' : 'collapsed' }}" href="#sidebarLayoutstwo" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                             <i class="ri-folder-chart-fill"></i>
                             <span data-key="t-layouts">Reports</span>
                         </a>
-                        <div class="collapse menu-dropdown" id="sidebarLayoutstwo">
+                        <div class="collapse menu-dropdown {{ request()->routeIs('departmentWiseReport') || request()->routeIs('dayWiseCallReport') ? 'show' : '' }}" id="sidebarLayoutstwo">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="{{ route('departmentWiseReport') }}" class="nav-link" data-key="t-horizontal">Department Wise Report</a>
+                                    <a href="{{ route('departmentWiseReport') }}" class="nav-link {{ request()->routeIs('departmentWiseReport') ? 'active' : '' }}" data-key="t-horizontal">Department Wise Report</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('dayWiseCallReport') }}" class="nav-link" data-key="t-horizontal">Day Wise Call Report</a>
+                                    <a href="{{ route('dayWiseCallReport') }}" class="nav-link {{ request()->routeIs('dayWiseCallReport') ? 'active' : '' }}" data-key="t-horizontal">Day Wise Call Report</a>
                                 </li>
                             </ul>
                         </div>
