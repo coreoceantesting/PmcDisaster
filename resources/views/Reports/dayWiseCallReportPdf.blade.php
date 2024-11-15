@@ -18,12 +18,15 @@
                 <th rowspan="2">Sr No.</th>
                 <th colspan="2">Emergency Call Details</th>
                 <th colspan="2">Event Area Details</th>
-                <th colspan="6">Accident Details</th>
+                <th colspan="6">Incident Details</th>
                 <th rowspan="2">Disaster Type</th>
                 <th rowspan="2">Disaster Subtype</th>
                 <th rowspan="2">Description</th>
                 <th rowspan="2">Location</th>
                 <th rowspan="2">Remark</th>
+                <th rowspan="2">Close At</th>
+                <th rowspan="2">Loss Type</th>
+                <th rowspan="2">Description</th>
             </tr>
             <tr>
                 <th>Call No</th>
@@ -50,6 +53,9 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -58,7 +64,7 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $list->complaint_unique_id }}</td>
-                        <td>{{ \Carbon\Carbon::parse($list->created_at)->setTimezone('Asia/Kolkata')->format('Y-m-d h:i:s A') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($list->created_at)->setTimezone('Asia/Kolkata')->format('d-m-Y h:i:s A') }}</td>
                         <td>{{ $list->caller_name }}</td>
                         <td>{{ $list->caller_address }} <br> {{ $list->caller_mobile_no }} </td>
                         <td>{{ $list->no_of_male_death }}</td>
@@ -72,11 +78,14 @@
                         <td>{{ $list->complaint_details }}</td>
                         <td>{{ $list->location }}</td>
                         <td>{{ $list->closing_remark }}</td>
+                        <td>{{ \Carbon\Carbon::parse($list->closing_at)->setTimezone('Asia/Kolkata')->format('d-m-Y') }}</td>
+                        <td>{{ $list->loss_type }}</td>
+                        <td>{{ $list->description }}</td>
                     </tr>
                 @endforeach
             @else
                 <tr>
-                    <td colspan="16">No Record Found</td>
+                    <td colspan="19">No Record Found</td>
                 </tr>
             @endif
         </tbody>
