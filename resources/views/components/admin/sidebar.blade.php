@@ -106,18 +106,18 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link {{ request()->routeIs('complaints.index') ? 'active' : '' }}" href="{{ route('complaints.index') }}" >
                         <i class="ri-list-unordered"></i>
-                        <span data-key="t-circle">Complaints List</span>
+                        <span data-key="t-circle">Pending Complaints List</span>
                     </a>
                 </li>
 
-                @can(['complaints.AcceptedList'])
+                {{-- @can(['complaints.AcceptedList'])
                     <li class="nav-item">
                         <a class="nav-link menu-link {{ request()->routeIs('accepetedComplaintList') ? 'active' : '' }}" href="{{ route('accepetedComplaintList') }}" >
                             <i class="ri-list-check-3"></i>
                             <span data-key="t-circle">Accepted Complaints List</span>
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
 
                 @can(['complaints.ClosedList'])
                     <li class="nav-item">

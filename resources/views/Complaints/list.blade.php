@@ -36,6 +36,9 @@
                                                 @can(['complaints.delete'])
                                                     <button class="btn btn-sm btn-dark rem-element px-2 py-1" title="Delete Complaint" data-id="{{ $list->id }}"><i data-feather="trash-2"></i> </button>    
                                                 @endcan
+                                                @can(['complaints.closecall']) 
+                                                    <a href="{{ route('complaints.close', $list->id) }}" class="close-complaint btn btn-sm btn-dark px-2 py-1" title="Close Complaint" data-id="{{ $list->id }}">Close Call</a>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

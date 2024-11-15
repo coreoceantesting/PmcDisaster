@@ -24,7 +24,7 @@ class ComplaintsController extends Controller
         $query = Complaint::join('complaint_types', 'complaints.complaint_type', '=', 'complaint_types.id')
         ->join('complaint_sub_types', 'complaints.complaint_sub_type', '=', 'complaint_sub_types.id')
         ->select('complaints.*','complaint_types.complaint_type_name', 'complaint_sub_types.complaint_sub_type_name')
-        ->where('complaints.approval_status', 'Pending');
+        ->where('complaints.closing_status', 'Pending');
 
         if(auth()->user()->roles->pluck('name')[0] == 'Department')
         {

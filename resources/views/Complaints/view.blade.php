@@ -68,10 +68,10 @@
             </div>
         </div>
         <div class="card-footer text-center">
-            @if ($complaintsDetail->approval_status == "Pending" && auth()->user()->roles->pluck('name')[0] == 'Department')
+            {{-- @if ($complaintsDetail->approval_status == "Pending" && auth()->user()->roles->pluck('name')[0] == 'Department')
                 <button id="approve" class="btn btn-sm btn-success approve-element" data-id="{{ $complaintsDetail->id }}">Accept</button>
                 <button id="transfer" class="btn btn-sm btn-danger transfer-element" data-id="{{ $complaintsDetail->id }}">Transfer</button> 
-            @endif
+            @endif --}}
             <a href="{{ url()->previous() }}" class="btn btn-sm btn-info">Back</a>
         </div>
 
