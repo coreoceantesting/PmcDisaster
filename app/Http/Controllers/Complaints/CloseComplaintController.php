@@ -8,6 +8,7 @@ use App\Models\ComplaintType;
 use App\Models\ComplaintSubType;
 use App\Models\Department;
 use App\Models\Complaint;
+use App\Models\Loss;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +19,8 @@ class CloseComplaintController extends Controller
     public function closeComplaint(Request $request, $id)
     {
         $complaintDetail = Complaint::findOrFail($id);
-        return view('Complaints.closeComplaintForm')->with(['complaintDetail' => $complaintDetail]);
+        $losses = Loss::latest()->get();
+        return view('Complaints.closeComplaintForm')->with(['complaintDetail' => $complaintDetail, 'losses' => $losses]);
     }
 
     public function storeClosureDetails(StoreClosureDetailsRequest $request)

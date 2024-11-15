@@ -76,6 +76,23 @@
                                     <span class="text-danger is-invalid upload_doc_err"></span>
                                 </div>
 
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="loss_type">Loss Type </label>
+                                    <select class="form-control" name="loss_type" id="loss_type">
+                                        <option value="">Select Loss Type</option>
+                                        @foreach ($losses as $loss)
+                                            <option value="{{ $loss->loss_type_name }}">{{ $loss->loss_type_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger is-invalid loss_type_err"></span>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="description">Description</label>
+                                    <textarea class="form-control" name="description" id="description" cols="30" rows="2"></textarea>
+                                    <span class="text-danger is-invalid description_err"></span>
+                                </div>
+
                             </div>
 
                         </div>
