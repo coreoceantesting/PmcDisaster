@@ -63,7 +63,11 @@
                                             Total Complaints
                                         </p>
                                         <h2 class="mt-4 ff-secondary fw-semibold text-dark">
-                                            <span class="counter-value" data-target="{{ $complaintsLists->total_count }}">{{ $complaintsLists->total_count }}</span>
+                                            @php
+                                                $totalCount = 0;
+                                                $totalCount = $complaintsLists->pending_count + $complaintsLists->closed_count;
+                                            @endphp
+                                            <span class="counter-value" data-target="{{ $totalCount }}">{{ $totalCount }}</span>
                                         </h2>
                                         <p class="mb-0 text-muted d-none">
                                             <span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>
