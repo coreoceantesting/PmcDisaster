@@ -90,7 +90,12 @@ class ReportController extends Controller
         
 
         $html = view('Reports.dayWiseCallReportPdf', compact('complaintsLists'))->render();
-        $mpdf = new Mpdf();
+        $mpdf = new Mpdf(
+            [
+                'mode' => 'utf-8',
+                'format' => 'A4',
+            ]
+        );
         $mpdf->WriteHTML($html);
         $mpdf->Output('day_wise_calls_register.pdf', 'I');
     }

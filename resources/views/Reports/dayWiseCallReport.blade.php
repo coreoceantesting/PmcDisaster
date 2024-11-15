@@ -10,7 +10,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('dayWiseCallReportPdf')}}" method="GET">
+                        <form action="{{route('dayWiseCallReportPdf')}}" method="GET" target="_blank">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">

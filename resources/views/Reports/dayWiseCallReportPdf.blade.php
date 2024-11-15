@@ -53,26 +53,32 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($complaintsLists as $index => $list)
+            @if ($complaintsLists->isNotEmpty())
+                @foreach ($complaintsLists as $index => $list)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $list->complaint_unique_id }}</td>
+                        <td>{{ \Carbon\Carbon::parse($list->created_at)->setTimezone('Asia/Kolkata')->format('Y-m-d h:i:s A') }}</td>
+                        <td>{{ $list->caller_name }}</td>
+                        <td>{{ $list->caller_address }} <br> {{ $list->caller_mobile_no }} </td>
+                        <td>{{ $list->no_of_male_death }}</td>
+                        <td>{{ $list->no_of_female_death }}</td>
+                        <td>{{ $list->no_of_child_death }}</td>
+                        <td>{{ $list->no_of_male_injured }}</td>
+                        <td>{{ $list->no_of_female_injured }}</td>
+                        <td>{{ $list->no_of_child_injured }}</td>
+                        <td>{{ $list->complaint_type_name }}</td>
+                        <td>{{ $list->complaint_sub_type_name }}</td>
+                        <td>{{ $list->complaint_details }}</td>
+                        <td>{{ $list->location }}</td>
+                        <td>{{ $list->closing_remark }}</td>
+                    </tr>
+                @endforeach
+            @else
                 <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $list->complaint_unique_id }}</td>
-                    <td>{{ \Carbon\Carbon::parse($list->created_at)->setTimezone('Asia/Kolkata')->format('Y-m-d h:i:s A') }}</td>
-                    <td>{{ $list->caller_name }}</td>
-                    <td>{{ $list->caller_address }} <br> {{ $list->caller_mobile_no }} </td>
-                    <td>{{ $list->no_of_male_death }}</td>
-                    <td>{{ $list->no_of_female_death }}</td>
-                    <td>{{ $list->no_of_child_death }}</td>
-                    <td>{{ $list->no_of_male_injured }}</td>
-                    <td>{{ $list->no_of_female_injured }}</td>
-                    <td>{{ $list->no_of_child_injured }}</td>
-                    <td>{{ $list->complaint_type_name }}</td>
-                    <td>{{ $list->complaint_sub_type_name }}</td>
-                    <td>{{ $list->complaint_details }}</td>
-                    <td>{{ $list->location }}</td>
-                    <td>{{ $list->closing_remark }}</td>
+                    <td colspan="16">No Record Found</td>
                 </tr>
-            @endforeach
+            @endif
         </tbody>
     </table>
 </body>
