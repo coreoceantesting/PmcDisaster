@@ -41,11 +41,11 @@
 
                 @canany(['masters.all'])
                     <li class="nav-item">
-                        <a class="nav-link menu-link {{ request()->routeIs('departments.index') || request()->routeIs('complaintTypes.index') || request()->routeIs('complaintSubTypes.index')  ? 'active' : 'collapsed' }}" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                        <a class="nav-link menu-link {{ request()->routeIs('departments.index') || request()->routeIs('lossTypes.index')  || request()->routeIs('complaintTypes.index') || request()->routeIs('complaintSubTypes.index')  ? 'active' : 'collapsed' }}" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                             <i class="ri-layout-3-line"></i>
                             <span data-key="t-layouts">Masters</span>
                         </a>
-                        <div class="collapse menu-dropdown {{ request()->routeIs('departments.index') || request()->routeIs('complaintTypes.index') || request()->routeIs('complaintSubTypes.index')  ? 'show' : '' }}" id="sidebarLayouts">
+                        <div class="collapse menu-dropdown {{ request()->routeIs('departments.index') || request()->routeIs('lossTypes.index') || request()->routeIs('complaintTypes.index') || request()->routeIs('complaintSubTypes.index')  ? 'show' : '' }}" id="sidebarLayouts">
                             <ul class="nav nav-sm flex-column">
                                 {{-- <li class="nav-item">
                                     <a href="{{ route('wards.index') }}" class="nav-link" data-key="t-horizontal">Wards</a>
@@ -60,6 +60,10 @@
 
                                 <li class="nav-item">
                                     <a href="{{ route('complaintSubTypes.index') }}" class="nav-link {{ request()->routeIs('complaintSubTypes.index') ? 'active' : '' }}" data-key="t-horizontal">Complaint Sub Type</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('lossTypes.index') }}" class="nav-link {{ request()->routeIs('lossTypes.index') ? 'active' : '' }}" data-key="t-horizontal">Loss Types</a>
                                 </li>
                             </ul>
                         </div>
