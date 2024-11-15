@@ -61,15 +61,15 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="complaint_details">Complaint Details <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" name="complaint_details" id="complaint_details" cols="30" rows="2" placeholder="Enter Complaint Details">{{ $complaintsDetail->complaint_details }}</textarea>
-                                    <span class="text-danger is-invalid complaint_details_err"></span>
+                                    <label class="col-form-label" for="location">Incident Location <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="location" name="location" type="text" placeholder="Enter Location" value="{{ $complaintsDetail->location }}">
+                                    <span class="text-danger is-invalid location_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="location">Location <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="location" name="location" type="text" placeholder="Enter Location" value="{{ $complaintsDetail->location }}">
-                                    <span class="text-danger is-invalid location_err"></span>
+                                    <label class="col-form-label" for="complaint_details">Complaint Details <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="complaint_details" id="complaint_details" cols="30" rows="2" placeholder="Enter Complaint Details">{{ $complaintsDetail->complaint_details }}</textarea>
+                                    <span class="text-danger is-invalid complaint_details_err"></span>
                                 </div>
 
                                 <div class="col-md-4">

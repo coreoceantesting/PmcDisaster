@@ -27,7 +27,7 @@ class UpdateComplaintsRequest extends FormRequest
             'manual_complaint_no' => 'nullable',
             'caller_name' => 'required',
             'caller_mobile_no' => 'required|digits:10',
-            'caller_address' => 'required',
+            'caller_address' => 'nullable',
             'complaint_details' => 'required',
             'location' => 'required',
             'departments' => 'required',

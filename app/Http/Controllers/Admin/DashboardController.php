@@ -21,7 +21,7 @@ class DashboardController extends Controller
         $userDepartment = auth()->user()->department;
         $complaintsQuery = Complaint::select(
             DB::raw('COUNT(id) as total_count'),
-            DB::raw('SUM(approval_status = "Pending") as pending_count'),
+            DB::raw('SUM(approval_status = "Approved" AND closing_status = "Pending") as pending_count'),
             DB::raw('SUM(approval_status = "Approved" AND closing_status = "Closed") as closed_count')
         );
 

@@ -53,21 +53,21 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="caller_address">Caller Address <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="caller_address">Caller Address</label>
                                     <textarea class="form-control" name="caller_address" id="caller_address" cols="30" rows="2" placeholder="Enter Caller Address"></textarea>
                                     <span class="text-danger is-invalid caller_address_err"></span>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="location">Incident Location <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="location" name="location" type="text" placeholder="Enter Location">
+                                    <span class="text-danger is-invalid location_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="complaint_details">Complaint Details <span class="text-danger">*</span></label>
                                     <textarea class="form-control" name="complaint_details" id="complaint_details" cols="30" rows="2" placeholder="Enter Complaint Details"></textarea>
                                     <span class="text-danger is-invalid complaint_details_err"></span>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="location">Location <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="location" name="location" type="text" placeholder="Enter Location">
-                                    <span class="text-danger is-invalid location_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
