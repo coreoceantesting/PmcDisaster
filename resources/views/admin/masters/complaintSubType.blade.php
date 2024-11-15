@@ -16,11 +16,7 @@
                         </div>
                         <div class="card-body">
                             <div class="mb-3 row">
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="complaint_sub_type_name">Complaint Sub Type Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="complaint_sub_type_name" name="complaint_sub_type_name" type="text" placeholder="Enter Complaint Sub Type Name">
-                                    <span class="text-danger is-invalid complaint_sub_type_name_err"></span>
-                                </div>
+                                
                                 <div class="col-md-4">
                                     <label class="col-form-label"  for="complaintType">Complaint Main Type <span class="text-danger">*</span></label>
                                     <select class="form-control" name="complaint_type" id="complaint_type">
@@ -31,6 +27,13 @@
                                     </select>
                                     <span class="text-danger is-invalid complaint_type_err"></span>
                                 </div>
+
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="complaint_sub_type_name">Complaint Sub Type Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="complaint_sub_type_name" name="complaint_sub_type_name" type="text" placeholder="Enter Complaint Sub Type Name">
+                                    <span class="text-danger is-invalid complaint_sub_type_name_err"></span>
+                                </div>
+
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Complaint Type Initial">
@@ -62,14 +65,10 @@
                         <div class="card-body py-2">
                             <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
                             <div class="mb-3 row">
-                                <div class="col-md-4">
-                                    <label class="col-form-label" for="complaint_sub_type_name">Complaint Sub Type Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="complaint_sub_type_name" name="complaint_sub_type_name" type="text" placeholder="Enter Complaint Sub Type Name">
-                                    <span class="text-danger is-invalid complaint_sub_type_name_err"></span>
-                                </div>
+                                
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="complaintType">Complaint Main Type <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="complaint_type" id="complaint_type">
+                                    <select class="form-control" name="complaint_type" id="complaint_type" style="pointer-events: none; background-color: #f1f1f1;">
                                         <option value="">Select Main Type</option>
                                         @foreach ($complaintTypeLists as $list)
                                             <option value="{{ $list->id }}">{{ $list->complaint_type_name }} </option>
@@ -77,9 +76,16 @@
                                     </select>
                                     <span class="text-danger is-invalid complaint_type_err"></span>
                                 </div>
+
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="complaint_sub_type_name">Complaint Sub Type Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="complaint_sub_type_name" name="complaint_sub_type_name" type="text" placeholder="Enter Complaint Sub Type Name">
+                                    <span class="text-danger is-invalid complaint_sub_type_name_err"></span>
+                                </div>
+
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Complaint Sub Type Initial">
+                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Complaint Sub Type Initial" readonly>
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>
                             </div>
@@ -114,8 +120,8 @@
                                 <thead>
                                     <tr>
                                         <th>Sr.No</th>
-                                        <th>Complaint Sub Type Name</th>
                                         <th>Complaint Main Type Name</th>
+                                        <th>Complaint Sub Type Name</th>
                                         <th>Initial</th>
                                         <th>Action</th>
                                     </tr>
@@ -124,8 +130,8 @@
                                     @foreach ($complaintSubTypes as $index => $complaintSubType)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
-                                            <td>{{ $complaintSubType->complaint_sub_type_name }}</td>
                                             <td>{{ $complaintSubType->type->complaint_type_name }}</td>
+                                            <td>{{ $complaintSubType->complaint_sub_type_name }}</td>
                                             <td>{{ $complaintSubType->initial }}</td>
                                             <td>
                                                 <button class="edit-element btn text-secondary px-2 py-1" title="Edit Complaint Type" data-id="{{ $complaintSubType->id }}"><i data-feather="edit"></i></button>
