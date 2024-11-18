@@ -14,15 +14,15 @@
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="fromdate"> From date </label>
+                                    <label for="fromdate"> From date <span class="text-danger">*</span></label>
                                     <input class="form-control" type="date" name="fromdate" id="fromdate" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="fromdate"> To date </label>
+                                    <label for="fromdate"> To date <span class="text-danger">*</span></label>
                                     <input class="form-control" type="date" name="todate" id="todate" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="fromdate">Department</label>
+                                    <label for="fromdate">Department <span class="text-danger">*</span></label>
                                     <select class="form-control" name="department" id="department">
                                         <option value="">Select Department</option>
                                         <option value="all">All</option>

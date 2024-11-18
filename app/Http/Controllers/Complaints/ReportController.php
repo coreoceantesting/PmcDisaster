@@ -29,7 +29,7 @@ class ReportController extends Controller
             'departments.department_name',
             DB::raw('COUNT(complaints.id) as total_count'),
             DB::raw('SUM(complaints.approval_status = "Pending") as pending_count'),
-            DB::raw('SUM(complaints.approval_status = "Approved" AND complaints.closing_status = "Closed") as closed_count')
+            DB::raw('SUM(complaints.closing_status = "Closed") as closed_count')
         );
 
         if (Auth::user()->roles->pluck('name')[0] == "Department") {
@@ -66,7 +66,7 @@ class ReportController extends Controller
         $query = Complaint::leftJoin('complaint_types', 'complaints.complaint_type', '=', 'complaint_types.id')
             ->leftJoin('complaint_sub_types', 'complaints.complaint_sub_type', '=', 'complaint_sub_types.id')
             ->leftJoin('closure_details', 'complaints.id', '=', 'closure_details.complaint_id')
-            ->where('complaints.approval_status', 'Approved')
+            // ->where('complaints.approval_status', 'Approved')
             ->select(
                 'complaints.*',
                 'complaint_types.complaint_type_name',
@@ -85,7 +85,7 @@ class ReportController extends Controller
             $query->whereRaw("FIND_IN_SET(?, complaints.departments)", [auth()->user()->department]);
         }
 
-        if($department != "all")
+        if($department !== "all")
         {
             $query->whereRaw("FIND_IN_SET(?, complaints.departments)", [$department]);
             $department = Department::find($department);
