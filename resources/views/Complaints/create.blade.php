@@ -11,12 +11,12 @@
                         @csrf
 
                         <div class="card-header">
-                            <h4 class="card-title">Complaint Register</h4>
+                            <h4 class="card-title">Complaint Register (तक्रार नोंदवही)</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="complaint_type">Complaint Type <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="complaint_type">Complaint Type ( तक्रारीचा प्रकार ) <span class="text-danger">*</span></label>
                                     <select class="form-control" name="complaint_type" id="complaint_type">
                                         <option value="">Select Complaint Type</option>
                                         @foreach ($complaint_types as $item)
@@ -27,7 +27,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="complaint_sub_type">Complaint Sub Type <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="complaint_sub_type">Complaint Sub Type ( तक्रार उपप्रकार )<span class="text-danger">*</span></label>
                                     <select class="form-control" name="complaint_sub_type" id="complaint_sub_type">
                                         <option value="">Select Complaint Sub Type</option>
                                     </select>
@@ -35,49 +35,49 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="manual_complaint_no">Manual Complaint No</label>
+                                    <label class="col-form-label" for="manual_complaint_no">Manual Complaint No ( मॅन्युअल तक्रार क्र )</label>
                                     <input class="form-control" id="manual_complaint_no" name="manual_complaint_no" type="text" placeholder="Enter Manual Complaint">
                                     <span class="text-danger is-invalid manual_complaint_no_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="caller_name">Caller Name <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="caller_name">Caller Name ( कॉलरचे नाव )<span class="text-danger">*</span></label>
                                     <input class="form-control" id="caller_name" name="caller_name" type="text" placeholder="Enter Caller Name">
                                     <span class="text-danger is-invalid caller_name_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="caller_mobile_no">Caller Mobile No <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="caller_mobile_no">Caller Mobile No ( कॉलर मोबाईल क्र )<span class="text-danger">*</span></label>
                                     <input class="form-control" id="caller_mobile_no" name="caller_mobile_no" type="number" placeholder="Enter Caller Mobile No">
                                     <span class="text-danger is-invalid caller_mobile_no_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="caller_address">Caller Address</label>
+                                    <label class="col-form-label" for="caller_address">Caller Address ( कॉलर पत्ता )</label>
                                     <textarea class="form-control" name="caller_address" id="caller_address" cols="30" rows="2" placeholder="Enter Caller Address"></textarea>
                                     <span class="text-danger is-invalid caller_address_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="location">Incident Location <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="location">Incident Location ( घटनेचे ठिकाण )<span class="text-danger">*</span></label>
                                     <input class="form-control" id="location" name="location" type="text" placeholder="Enter Location">
                                     <span class="text-danger is-invalid location_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="complaint_details">Complaint Details <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="complaint_details">Complaint Details ( तक्रारीचे तपशील )<span class="text-danger">*</span></label>
                                     <textarea class="form-control" name="complaint_details" id="complaint_details" cols="30" rows="2" placeholder="Enter Complaint Details"></textarea>
                                     <span class="text-danger is-invalid complaint_details_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="uploaded_doc">Attach Document </label>
+                                    <label class="col-form-label" for="uploaded_doc">Attach Document ( कागदपत्रे )</label>
                                     <input class="form-control" id="uploaded_doc" name="uploaded_doc" type="file">
                                     <span class="text-danger is-invalid uploaded_doc_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="departments">Department <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="departments">Department ( विभाग )<span class="text-danger">*</span></label>
                                     <select class="js-example-basic-single col-sm-12" name="departments[]" id="departments" multiple>
                                         <option value="" disabled>Select Complaint Type</option>
                                         @foreach ($departments as $item)

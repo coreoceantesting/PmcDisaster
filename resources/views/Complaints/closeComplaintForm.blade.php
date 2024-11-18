@@ -11,73 +11,73 @@
                         @csrf
 
                         <div class="card-header">
-                            <h4 class="card-title">Call Closure Details Form</h4>
+                            <h4 class="card-title">Call Closure Details Form ( कॉल क्लोजर तपशील फॉर्म )</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3 row">
                                 <input type="hidden" name="complaint_id" id="complaint_id" value="{{ $complaintDetail->id }}">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="no_of_male_injured">No Of Male Injured</label>
+                                    <label class="col-form-label" for="no_of_male_injured">No Of Male Injured ( पुरुष जखमींची संख्या )</label>
                                     <input class="form-control numeric-only" id="no_of_male_injured" name="no_of_male_injured" value="0" type="number" placeholder="Enter No Of Male Injured" min="0">
                                     <span class="text-danger is-invalid no_of_male_injured_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="no_of_female_injured">No Of Female Injured</label>
+                                    <label class="col-form-label" for="no_of_female_injured">No Of Female Injured ( महिला जखमींची संख्या )</label>
                                     <input class="form-control numeric-only" id="no_of_female_injured" name="no_of_female_injured" value="0" type="number" placeholder="Enter No Of Female Injured" min="0">
                                     <span class="text-danger is-invalid no_of_female_injured_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="no_of_child_injured">No Of Child Injured</label>
+                                    <label class="col-form-label" for="no_of_child_injured">No Of Child Injured ( जखमी बालकांची संख्या )</label>
                                     <input class="form-control numeric-only" id="no_of_child_injured" name="no_of_child_injured" value="0" type="number" placeholder="Enter No Of Child Injured" min="0">
                                     <span class="text-danger is-invalid no_of_child_injured_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="total_injured">Total Injured</label>
+                                    <label class="col-form-label" for="total_injured">Total Injured ( एकूण जखमी )</label>
                                     <input class="form-control numeric-only" id="total_injured" name="total_injured" type="number" value="0" placeholder="Enter No Of Total Injured" min="0">
                                     <span class="text-danger is-invalid total_injured_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="no_of_male_death">No Of Male Death</label>
+                                    <label class="col-form-label" for="no_of_male_death">No Of Male Death ( पुरुष मृत्यूची संख्या )</label>
                                     <input class="form-control numeric-only" id="no_of_male_death" name="no_of_male_death" value="0" type="number" placeholder="Enter No Of Male Death" min="0">
                                     <span class="text-danger is-invalid no_of_male_death_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="no_of_female_death">No Of Female Death</label>
+                                    <label class="col-form-label" for="no_of_female_death">No Of Female Death ( महिला मृत्यूची संख्या )</label>
                                     <input class="form-control numeric-only" id="no_of_female_death" name="no_of_female_death" value="0" type="number" placeholder="Enter No Of Female Death" min="0">
                                     <span class="text-danger is-invalid no_of_female_death_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="no_of_child_death">No Of Child Death</label>
+                                    <label class="col-form-label" for="no_of_child_death">No Of Child Death ( बालमृत्यूची संख्या )</label>
                                     <input class="form-control numeric-only" id="no_of_child_death" name="no_of_child_death" value="0" type="number" placeholder="Enter No Of Child Death" min="0">
                                     <span class="text-danger is-invalid no_of_child_death_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="total_death">Total Death</label>
+                                    <label class="col-form-label" for="total_death">Total Death ( एकूण मृत्यू )</label>
                                     <input class="form-control numeric-only" id="total_death" name="total_death" type="number" value="0" placeholder="Enter No Of Total Death" min="0">
                                     <span class="text-danger is-invalid total_death_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="remark">Remark <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="remark">Remark ( शेरा )<span class="text-danger">*</span></label>
                                     <textarea class="form-control" name="remark" id="remark" cols="30" rows="2" placeholder="Enter Remark"></textarea>
                                     <span class="text-danger is-invalid remark_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="upload_doc">Upload Document</label>
+                                    <label class="col-form-label" for="upload_doc">Upload Document ( दस्तऐवज अपलोड करा )</label>
                                     <input class="form-control" type="file" name="upload_doc" id="upload_doc">
                                     <span class="text-danger is-invalid upload_doc_err"></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="loss_type">Loss Type </label>
+                                    <label class="col-form-label" for="loss_type">Loss Type ( नुकसानाचा प्रकार )</label>
                                     <select class="form-control" name="loss_type" id="loss_type">
                                         <option value="">Select Loss Type</option>
                                         @foreach ($losses as $loss)
@@ -88,7 +88,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="description">Description</label>
+                                    <label class="col-form-label" for="description">Description ( वर्णन )</label>
                                     <textarea class="form-control" name="description" id="description" cols="30" rows="2"></textarea>
                                     <span class="text-danger is-invalid description_err"></span>
                                 </div>
