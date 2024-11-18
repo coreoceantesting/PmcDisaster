@@ -53,7 +53,7 @@
                             </td>
                             <th>Accpeted Status</th>
                             @php
-                                $color = ($complaintsDetail->closing_status == "Approved") ? 'green' : 'red';
+                                $color = ($complaintsDetail->closing_status == "Approved") ? 'red' : 'green';
                             @endphp
                             <td>
                                 <span class="badge" style="background-color: {{ $color }};">
