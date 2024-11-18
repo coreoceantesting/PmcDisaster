@@ -55,8 +55,17 @@ class ComplaintsController extends Controller
             DB::beginTransaction();
             $input = $request->validated();
 
-            $applicationNo = "DM/".date('Y')."/".rand(0000, 9999);
+            // Get the count of existing complaints for the current year
+            $currentYear = date('Y');
+            $lastNumber = Complaint::whereYear('created_at', $currentYear)->count();
+
+            // Increment the last number and pad it with leading zeros
+            $newNumber = str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
+
+            // Create the application number with the new sequence number
+            $applicationNo = "DM/" . $currentYear . "/" . $newNumber;
             $input['complaint_unique_id'] = $applicationNo;
+
             $input['departments'] = implode(',', $input['departments']);
 
             if ($request->hasFile('uploaded_doc')) {
@@ -68,7 +77,7 @@ class ComplaintsController extends Controller
             Complaint::create($input);
             DB::commit();
 
-            return response()->json(['success'=> 'Complaint register successfully!']);
+            return response()->json(['success' => $applicationNo . ' Complaint registered successfully!']);
         }
         catch(\Exception $e)
         {
