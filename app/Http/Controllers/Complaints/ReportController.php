@@ -43,7 +43,11 @@ class ReportController extends Controller
 
     public function dayWiseCallReport(Request $request)
     {
-        $department_list = Department::latest()->get();
+        if(Auth::user()->roles->pluck('name')[0] == "Department"){
+            $department_list = Department::where('id', auth()->user()->department)->get();
+        }else{
+            $department_list = Department::latest()->get();
+        }
         return view('Reports.dayWiseCallReport')->with(['department_list' => $department_list]);
     }
 
