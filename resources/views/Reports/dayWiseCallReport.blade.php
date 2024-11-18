@@ -25,7 +25,9 @@
                                     <label for="fromdate">Department <span class="text-danger">*</span></label>
                                     <select class="form-control" name="department" id="department">
                                         <option value="">Select Department</option>
-                                        <option value="all">All</option>
+                                        @if (Auth::user()->roles->pluck('name')[0] != "Department")
+                                            <option value="all">All</option>
+                                        @endif
                                         @foreach ($department_list as $item)
                                             <option value="{{ $item->id }}">{{ $item->department_name }}</option>
                                         @endforeach
