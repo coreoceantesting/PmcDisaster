@@ -35,7 +35,7 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('dashboard') }}" >
                         <i class="ri-dashboard-2-line"></i>
-                        <span data-key="t-dashboards">Dashboard</span>
+                        <span data-key="t-dashboards">Dashboard (डॅशबोर्ड)</span>
                     </a>
                 </li>
 
@@ -43,7 +43,7 @@
                     <li class="nav-item">
                         <a class="nav-link menu-link {{ request()->routeIs('departments.index') || request()->routeIs('lossTypes.index')  || request()->routeIs('complaintTypes.index') || request()->routeIs('complaintSubTypes.index')  ? 'active' : 'collapsed' }}" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                             <i class="ri-layout-3-line"></i>
-                            <span data-key="t-layouts">Masters</span>
+                            <span data-key="t-layouts">Masters (मास्टर्स)</span>
                         </a>
                         <div class="collapse menu-dropdown {{ request()->routeIs('departments.index') || request()->routeIs('lossTypes.index') || request()->routeIs('complaintTypes.index') || request()->routeIs('complaintSubTypes.index')  ? 'show' : '' }}" id="sidebarLayouts">
                             <ul class="nav nav-sm flex-column">
@@ -51,19 +51,19 @@
                                     <a href="{{ route('wards.index') }}" class="nav-link" data-key="t-horizontal">Wards</a>
                                 </li> --}}
                                 <li class="nav-item">
-                                    <a href="{{ route('departments.index') }}" class="nav-link {{ request()->routeIs('departments.index') ? 'active' : '' }}" data-key="t-horizontal">Department</a>
+                                    <a href="{{ route('departments.index') }}" class="nav-link {{ request()->routeIs('departments.index') ? 'active' : '' }}" data-key="t-horizontal">Department (विभाग)</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{{ route('complaintTypes.index') }}" class="nav-link {{ request()->routeIs('complaintTypes.index') ? 'active' : '' }}" data-key="t-horizontal">Complaint Type</a>
+                                    <a href="{{ route('complaintTypes.index') }}" class="nav-link {{ request()->routeIs('complaintTypes.index') ? 'active' : '' }}" data-key="t-horizontal">Complaint Type (तक्रारीचा प्रकार)</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{{ route('complaintSubTypes.index') }}" class="nav-link {{ request()->routeIs('complaintSubTypes.index') ? 'active' : '' }}" data-key="t-horizontal">Complaint Sub Type</a>
+                                    <a href="{{ route('complaintSubTypes.index') }}" class="nav-link {{ request()->routeIs('complaintSubTypes.index') ? 'active' : '' }}" data-key="t-horizontal">Complaint Sub Type (तक्रार उपप्रकार)</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{{ route('lossTypes.index') }}" class="nav-link {{ request()->routeIs('lossTypes.index') ? 'active' : '' }}" data-key="t-horizontal">Loss Types</a>
+                                    <a href="{{ route('lossTypes.index') }}" class="nav-link {{ request()->routeIs('lossTypes.index') ? 'active' : '' }}" data-key="t-horizontal">Loss Types (नुकसानाचे प्रकार)</a>
                                 </li>
                             </ul>
                         </div>
@@ -75,18 +75,18 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link {{ request()->routeIs('users.index') || request()->routeIs('roles.index') ? 'active' : 'collapsed' }}" href="#sidebarLayoutsone" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                         <i class="bx bx-user-circle"></i>
-                        <span data-key="t-layouts">User Management</span>
+                        <span data-key="t-layouts">User Management (वापरकर्ता व्यवस्थापन)</span>
                     </a>
                     <div class="collapse menu-dropdown {{ request()->routeIs('users.index') || request()->routeIs('roles.index') ? 'show' : '' }}" id="sidebarLayoutsone">
                         <ul class="nav nav-sm flex-column">
                             @can('users.view')
                                 <li class="nav-item">
-                                    <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}" data-key="t-horizontal">Users</a>
+                                    <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}" data-key="t-horizontal">Users (वापरकर्ते)</a>
                                 </li>
                             @endcan
                             @can('roles.view')
                                 <li class="nav-item">
-                                    <a href="{{ route('roles.index') }}" class="nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}" data-key="t-horizontal">Roles</a>
+                                    <a href="{{ route('roles.index') }}" class="nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}" data-key="t-horizontal">Roles (भूमिका)</a>
                                 </li>
                             @endcan
                         </ul>
@@ -98,7 +98,7 @@
                     <li class="nav-item">
                         <a class="nav-link menu-link {{ request()->routeIs('complaints.create') ? 'active' : '' }}" href="{{ route('complaints.create') }}" >
                             <i class="ri-add-circle-fill"></i>
-                            <span data-key="t-circle">Complaint Register </span>
+                            <span data-key="t-circle">Complaint Register (तक्रार नोंदवही)</span>
                         </a>
                     </li>
                 @endcan
@@ -106,7 +106,7 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link {{ request()->routeIs('complaints.index') ? 'active' : '' }}" href="{{ route('complaints.index') }}" >
                         <i class="ri-list-unordered"></i>
-                        <span data-key="t-circle">Pending Complaints List</span>
+                        <span data-key="t-circle">Pending Complaints List (प्रलंबित तक्रारींची यादी)</span>
                     </a>
                 </li>
 
@@ -123,7 +123,7 @@
                     <li class="nav-item">
                         <a class="nav-link menu-link {{ request()->routeIs('closedComplaintList') ? 'active' : '' }}" href="{{ route('closedComplaintList') }}" >
                             <i class="ri-close-circle-fill"></i>
-                            <span data-key="t-circle">Closed Complaints List</span>
+                            <span data-key="t-circle">Closed Complaints List (बंद केलेल्या तक्रारींची यादी)</span>
                         </a>
                     </li>
                 @endcan
@@ -132,15 +132,15 @@
                     <li class="nav-item">
                         <a class="nav-link menu-link {{ request()->routeIs('departmentWiseReport') || request()->routeIs('dayWiseCallReport') ? 'active' : 'collapsed' }}" href="#sidebarLayoutstwo" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                             <i class="ri-folder-chart-fill"></i>
-                            <span data-key="t-layouts">Reports</span>
+                            <span data-key="t-layouts">Reports (अहवाल)</span>
                         </a>
                         <div class="collapse menu-dropdown {{ request()->routeIs('departmentWiseReport') || request()->routeIs('dayWiseCallReport') ? 'show' : '' }}" id="sidebarLayoutstwo">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="{{ route('departmentWiseReport') }}" class="nav-link {{ request()->routeIs('departmentWiseReport') ? 'active' : '' }}" data-key="t-horizontal">Department Wise Report</a>
+                                    <a href="{{ route('departmentWiseReport') }}" class="nav-link {{ request()->routeIs('departmentWiseReport') ? 'active' : '' }}" data-key="t-horizontal">Department Wise Report (विभागनिहाय अहवाल)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('dayWiseCallReport') }}" class="nav-link {{ request()->routeIs('dayWiseCallReport') ? 'active' : '' }}" data-key="t-horizontal">Day Wise Call Report</a>
+                                    <a href="{{ route('dayWiseCallReport') }}" class="nav-link {{ request()->routeIs('dayWiseCallReport') ? 'active' : '' }}" data-key="t-horizontal">Day Wise Call Report (दिवसानुसार कॉल अहवाल)</a>
                                 </li>
                             </ul>
                         </div>

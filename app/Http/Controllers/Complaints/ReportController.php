@@ -28,7 +28,7 @@ class ReportController extends Controller
             'departments.id',
             'departments.department_name',
             DB::raw('COUNT(complaints.id) as total_count'),
-            DB::raw('SUM(complaints.approval_status = "Pending") as pending_count'),
+            DB::raw('SUM(complaints.closing_status = "Pending") as pending_count'),
             DB::raw('SUM(complaints.closing_status = "Closed") as closed_count')
         );
 

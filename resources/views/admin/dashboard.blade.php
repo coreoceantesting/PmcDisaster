@@ -60,7 +60,7 @@
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <p class="fw-medium mb-0">
-                                            Total Complaints
+                                            Total Complaints ( एकूण तक्रारी )
                                         </p>
                                         <h2 class="mt-4 ff-secondary fw-semibold text-dark">
                                             @php
@@ -98,7 +98,7 @@
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <p class="fw-medium mb-0">
-                                            Pending
+                                            Pending Complaints ( प्रलंबित तक्रारी )
                                         </p>
                                         <h2 class="mt-4 ff-secondary fw-semibold text-dark">
                                             <span class="counter-value" data-target="{{ $complaintsLists->pending_count }}">{{ $complaintsLists->pending_count }}</span>
@@ -133,7 +133,7 @@
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <p class="fw-medium mb-0">
-                                            Closed
+                                            Closed Complaints ( बंद तक्रारी )
                                         </p>
                                         <h2 class="mt-4 ff-secondary fw-semibold text-dark">
                                             <span class="counter-value" data-target="{{ $complaintsLists->closed_count }}">{{ $complaintsLists->closed_count }}</span>
@@ -168,7 +168,7 @@
                     <div class="col-md-6">
                         <div class="card border-primary card-height-100">
                             <div class="card-header bg-primary align-items-center d-flex">
-                                <h4 class="card-title text-white mb-0 flex-grow-1">Pending Complaint</h4>
+                                <h4 class="card-title text-white mb-0 flex-grow-1">Pending Complaints ( प्रलंबित तक्रारी )</h4>
                                 <div class="flex-shrink-0">
                                     <a href="{{ route('complaints.index') }}" class="btn btn-sm btn-info">View All</a>
                                 </div>
@@ -202,7 +202,7 @@
                     <div class="col-md-6">
                         <div class="card border-primary card-height-100">
                             <div class="card-header bg-primary align-items-center d-flex">
-                                <h4 class="card-title text-white mb-0 flex-grow-1">Closed Complaint</h4>
+                                <h4 class="card-title text-white mb-0 flex-grow-1">Closed Complaints ( बंद तक्रारी )</h4>
                                 <div class="flex-shrink-0">
                                     <a href="{{ route('closedComplaintList') }}" class="btn btn-sm btn-info">View All</a>
                                 </div>

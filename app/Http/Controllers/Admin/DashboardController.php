@@ -21,12 +21,12 @@ class DashboardController extends Controller
         $userDepartment = auth()->user()->department;
         $complaintsQuery = Complaint::select(
             // DB::raw('COUNT(id) as total_count'),
-            DB::raw('SUM(approval_status = "Approved" AND closing_status = "Pending") as pending_count'),
-            DB::raw('SUM(approval_status = "Approved" AND closing_status = "Closed") as closed_count')
+            DB::raw('SUM(closing_status = "Pending") as pending_count'),
+            DB::raw('SUM(closing_status = "Closed") as closed_count')
         );
 
-        $pendingQuery = Complaint::where('approval_status', '=', 'Pending');
-        $closedQuery = Complaint::where('approval_status', '=', 'Approved')->where('closing_status', '=', 'Closed');
+        $pendingQuery = Complaint::where('closing_status', '=', 'Pending');
+        $closedQuery = Complaint::where('closing_status', '=', 'Closed');
 
         if (!empty($userDepartment)) {
             $complaintsQuery->whereRaw("FIND_IN_SET('$userDepartment', departments)");
