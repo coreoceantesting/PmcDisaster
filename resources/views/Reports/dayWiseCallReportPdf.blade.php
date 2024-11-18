@@ -3,15 +3,26 @@
 <head>
     <title>Daywise Call Report</title>
     <style>
-        body { font-family: DejaVu Sans, sans-serif; }
+        body { font-family: 'freeserif', 'normal';}
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 8px 12px; border: 1px solid #000; text-align: center; }
         th { background-color: #f2f2f2; }
     </style>
 </head>
 <body>
-
+    <div style="text-align: center; width: 100%;">
+        <img src="{{ public_path('/admin/images/Panvel_Municipal_Corporation.png') }}" height="80" width="90" alt="Left Logo">
+    </div>
     <h3 style="text-align: center">Day-wise Call Report</h3>
+    <table width="100%">
+        <tr>
+            <td style="text-align: left; width: 33%;">From Date: {{\Carbon\Carbon::parse($fromdate)->setTimezone('Asia/Kolkata')->format('d-m-Y')  }}</td>
+            <td style="text-align: center; width: 33%;">To Date: {{\Carbon\Carbon::parse($todate)->setTimezone('Asia/Kolkata')->format('d-m-Y') }}</td>
+            <td style="text-align: center; width: 33%;">{{ empty($departmentName) ? "All" : $departmentName }}</td>
+            <td style="text-align: right; width: 33%;">Generated Date:{{\Carbon\Carbon::parse(now())->setTimezone('Asia/Kolkata')->format('d-m-Y') }}</td>
+        </tr>
+    </table>
+    <br>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -89,6 +100,13 @@
                 </tr>
             @endif
         </tbody>
+    </table>
+    <br>
+    <table width="100%">
+        <tr>
+            <td style="text-align: left; width: 33%;">Printed By: {{ Auth()->user()->name }}</td>
+            <td style="text-align: center; width: 33%;">Timestamp: {{\Carbon\Carbon::parse(now())->setTimezone('Asia/Kolkata')->format('d-m-Y h:i:s A') }}</td>
+        </tr>
     </table>
 </body>
 </html>
