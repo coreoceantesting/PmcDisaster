@@ -11,7 +11,7 @@
                 <form class="theme-form" name="addForm" id="addForm">
                     @csrf
                     <div class="card-header pb-0">
-                        <h4>Create User</h4>
+                        <h4>Create User ( युजर तयार करा )</h4>
                     </div>
                     <div class="card-body pt-0">
 
@@ -19,26 +19,26 @@
                         <div class="mb-3 row">
 
                             <div class="col-md-4 mt-3">
-                                <label class="col-form-label" for="name"> Name <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="name"> Name ( नाव )<span class="text-danger">*</span></label>
                                 <input class="form-control" id="name" name="name" type="text" placeholder="Enter User Name">
                                 <span class="text-danger is-invalid name_err"></span>
                             </div>
 
                             <div class="col-md-4 mt-3">
-                                <label class="col-form-label" for="email">User Email <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="email">User Email ( युजर ईमेल )<span class="text-danger">*</span></label>
                                 <input class="form-control" id="email" name="email" type="email" placeholder="Enter User Email">
                                 <span class="text-danger is-invalid email_err"></span>
                             </div>
 
                             <div class="col-md-4 mt-3">
-                                <label class="col-form-label" for="mobile">User Mobile <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="mobile">User Mobile ( युजर मोबाईल )<span class="text-danger">*</span></label>
                                 <input class="form-control" id="mobile" name="mobile" type="number" min="0" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
                                     placeholder="Enter User Mobile">
                                 <span class="text-danger is-invalid mobile_err"></span>
                             </div>
 
                             <div class="col-md-4 mt-3">
-                                <label class="col-form-label" for="role">Select User Type / Role <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="role">Select User Type / Role ( वापरकर्ता प्रकार / भूमिका निवडा )<span class="text-danger">*</span></label>
                                 <select class="js-example-basic-single col-sm-12" id="role" name="role">
                                     <option value="">--Select Role--</option>
                                     @foreach ($roles as $role)
@@ -49,7 +49,7 @@
                             </div>
 
                             <div class="col-md-4 mt-3 department-section" style="display: none;">
-                                <label class="col-form-label" for="role">Department <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="role">Department ( विभाग )<span class="text-danger">*</span></label>
                                 <select class="form-control" id="department" name="department">
                                     <option value="">--Select Department--</option>
                                     @foreach ($departments as $department)
@@ -61,7 +61,7 @@
 
                             <div class="col-md-4 mt-3">
 
-                                <label class="col-form-label" for="password-input">Password <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="password-input">Password ( पासवर्ड )<span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <input type="password" class="form-control password-input" placeholder="Enter password" id="password" name="password">
                                     <button class="btn btn-outline-secondary" type="button" id="password-addon">
@@ -77,7 +77,7 @@
 
                             <div class="col-md-4 mt-3">
 
-                                <label class="col-form-label" for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="confirm_password">Confirm Password ( पासवर्डची पुष्टी करा )<span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <input type="password" class="form-control confirm-password-input" placeholder="********" id="confirm_password" name="confirm_password">
                                     <button class="btn btn-outline-secondary" type="button" id="confirm-password-addon">
@@ -120,26 +120,26 @@
                         <div class="mb-3 row">
 
                             <div class="col-md-4">
-                                <label class="col-form-label" for="name">Name <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="name">Name ( नाव )<span class="text-danger">*</span></label>
                                 <input class="form-control" name="name" type="text" placeholder="Enter User Name">
                                 <span class="text-danger is-invalid name_err"></span>
                             </div>
 
                             <div class="col-md-4">
-                                <label class="col-form-label" for="email">User Email <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="email">User Email ( वापरकर्ता ईमेल )<span class="text-danger">*</span></label>
                                 <input class="form-control" name="email" type="email" placeholder="Enter User Email">
                                 <span class="text-danger is-invalid email_err"></span>
                             </div>
 
                             <div class="col-md-4">
-                                <label class="col-form-label" for="mobile">User Mobile <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="mobile">User Mobile ( वापरकर्ता मोबाइल )<span class="text-danger">*</span></label>
                                 <input class="form-control" name="mobile" type="number" min="0" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
                                     placeholder="Enter User Mobile">
                                 <span class="text-danger is-invalid mobile_err"></span>
                             </div>
 
                             <div class="col-md-4 mt-3">
-                                <label class="col-form-label">Select User Type / Role <span class="text-danger">*</span></label>
+                                <label class="col-form-label">Select User Type / Role ( वापरकर्ता प्रकार / भूमिका निवडा )<span class="text-danger">*</span></label>
                                 <select class="js-example-basic-single col-sm-12 role-edit" name="role">
                                     <option value="">--Select Role--</option>
                                     @foreach ($roles as $role)
@@ -150,7 +150,7 @@
                             </div>
 
                             <div class="col-md-4 mt-3 department-edit">
-                                <label class="col-form-label" for="role">Department <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="role">Department ( विभाग )<span class="text-danger">*</span></label>
                                 <select class="form-control department-field" id="department" name="department">
                                     <option value="">--Select Department--</option>
                                     @foreach ($departments as $department)
@@ -242,7 +242,7 @@
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Change Password</h5>
+                        <h5 class="modal-title">Change Password ( पासवर्ड बदला )</h5>
                         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -251,7 +251,7 @@
 
                         <div class="col-8 mx-auto my-2">
 
-                            <label class="col-form-label" for="password-input">New Password <span class="text-danger">*</span></label>
+                            <label class="col-form-label" for="password-input">New Password ( नवीन पासवर्ड )<span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="password" class="form-control new-password-input" placeholder="Enter New password" id="new_password" name="new_password">
                                 <button class="btn btn-outline-secondary" type="button" id="new-password-addon">
@@ -272,7 +272,7 @@
                         </div>
 
                         <div class="col-8 mx-auto my-2">
-                            <label class="col-form-label" for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
+                            <label class="col-form-label" for="confirm_password">Confirm Password ( पासवर्डची पुष्टी करा )<span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="password" class="form-control new-confirm-password-input" placeholder="********" id="confirmed_password" name="confirmed_password">
                                 <button class="btn btn-outline-secondary" type="button" id="new-confirm-password-addon">
@@ -310,7 +310,7 @@
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Assign Role</h5>
+                        <h5 class="modal-title">Assign Role ( भूमिका नियुक्त करा )</h5>
                         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -318,14 +318,14 @@
                         <input type="hidden" id="role_user_id" name="role_user_id" value="">
 
                         <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label" for="name">User Name : </label>
+                            <label class="col-sm-3 col-form-label" for="name">User Name( वापरकर्ता नाव ) : </label>
                             <div class="col-sm-9">
                                 <h6 id="role_user_name" class="pt-2"></h6>
                             </div>
                         </div>
 
                         <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label" for="name">Role : </label>
+                            <label class="col-sm-3 col-form-label" for="name">Role ( भूमिका ) : </label>
                             <div class="col-sm-9" style="max-height: 60px">
                                 <select class="js-example-basic-single" id="edit_role" name="edit_role">
                                     <option value="">--Select Role--</option>

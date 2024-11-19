@@ -12,17 +12,17 @@
                         @csrf
 
                         <div class="card-header">
-                            <h4 class="card-title">Add Department</h4>
+                            <h4 class="card-title">Add Department ( विभाग जोडा )</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="department_name">Department Name <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="department_name">Department Name ( विभागाचे नाव )<span class="text-danger">*</span></label>
                                     <input class="form-control" id="department_name" name="department_name" type="text" placeholder="Enter Department Name">
                                     <span class="text-danger is-invalid department_name_err"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="initial">Initial ( इनिशियल )<span class="text-danger">*</span></label>
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Department Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>
@@ -47,18 +47,18 @@
                     @csrf
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit Department</h4>
+                            <h4 class="card-title">Edit Department ( विभाग संपादन )</h4>
                         </div>
                         <div class="card-body py-2">
                             <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="department_name">Department Name <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="department_name">Department Name ( विभागाचे नाव )<span class="text-danger">*</span></label>
                                     <input class="form-control" id="department_name" name="department_name" type="text" placeholder="Enter Department Name">
                                     <span class="text-danger is-invalid department_name_err"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="initial">Initial ( इनिशियल )<span class="text-danger">*</span></label>
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Department Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>

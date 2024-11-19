@@ -12,12 +12,12 @@
                         @csrf
 
                         <div class="card-header">
-                            <h4 class="card-title">Add Loss Type</h4>
+                            <h4 class="card-title">Add Loss Type ( तोटा प्रकार जोडा )</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="loss_type_name">Loss Type Name <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="loss_type_name">Loss Type Name ( नुकसान प्रकार नाव )<span class="text-danger">*</span></label>
                                     <input class="form-control" id="loss_type_name" name="loss_type_name" type="text" placeholder="Enter Loss Type Name">
                                     <span class="text-danger is-invalid loss_type_name_err"></span>
                                 </div>
@@ -42,13 +42,13 @@
                     @csrf
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit Loss Type</h4>
+                            <h4 class="card-title">Edit Loss Type ( नुकसान प्रकार संपादित करा )</h4>
                         </div>
                         <div class="card-body py-2">
                             <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="loss_type_name">Loss Type Name <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="loss_type_name">Loss Type Name ( नुकसान प्रकार नाव )<span class="text-danger">*</span></label>
                                     <input class="form-control" id="loss_type_name" name="loss_type_name" type="text" placeholder="Enter Loss Type Name">
                                     <span class="text-danger is-invalid loss_type_name_err"></span>
                                 </div>

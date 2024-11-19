@@ -12,17 +12,17 @@
                         @csrf
 
                         <div class="card-header">
-                            <h4 class="card-title">Add Complaint Type</h4>
+                            <h4 class="card-title">Add Complaint Type ( तक्रारीचा प्रकार जोडा )</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="complaint_type_name">Complaint Type Name <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="complaint_type_name">Complaint Type Name ( तक्रार प्रकाराचे नाव )<span class="text-danger">*</span></label>
                                     <input class="form-control" id="complaint_type_name" name="complaint_type_name" type="text" placeholder="Enter Complaint Type Name">
                                     <span class="text-danger is-invalid complaint_type_name_err"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="initial">Initial ( इनिशियल )<span class="text-danger">*</span></label>
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Complaint Type Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>
@@ -47,18 +47,18 @@
                     @csrf
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit Complaint Type</h4>
+                            <h4 class="card-title">Edit Complaint Type ( तक्रार प्रकार संपादित करा )</h4>
                         </div>
                         <div class="card-body py-2">
                             <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="complaint_type_name">Complaint Type Name <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="complaint_type_name">Complaint Type Name ( तक्रार प्रकाराचे नाव )<span class="text-danger">*</span></label>
                                     <input class="form-control" id="complaint_type_name" name="complaint_type_name" type="text" placeholder="Enter Complaint Type Name">
                                     <span class="text-danger is-invalid complaint_type_name_err"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="initial">Initial ( इनिशियल )<span class="text-danger">*</span></label>
                                     <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Complaint Type Initial">
                                     <span class="text-danger is-invalid initial_err"></span>
                                 </div>
