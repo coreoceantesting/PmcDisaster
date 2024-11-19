@@ -129,7 +129,7 @@
                         <td>{{ $list->description }}</td>
                         <td>
                             @foreach ($list->departments_names as $departmentName)
-                                <p>{{ $departmentName }}</p>
+                                <p>{{ $departmentName }},</p>
                             @endforeach
                         </td>
                     </tr>
