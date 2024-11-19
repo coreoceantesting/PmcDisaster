@@ -71,6 +71,7 @@
                 <th rowspan="2">Close At</th>
                 <th rowspan="2">Loss Type</th>
                 <th rowspan="2">Description</th>
+                <th rowspan="2">Department</th>
             </tr>
             <tr>
                 <th>Complaint Id</th>
@@ -92,6 +93,7 @@
                 <th>Male</th>
                 <th>Female</th>
                 <th>Child</th>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -125,6 +127,11 @@
                         <td>{{ $list->closing_at ? \Carbon\Carbon::parse($list->closing_at)->format('d-m-y') : 'Pending' }}</td>
                         <td>{{ $list->loss_type }}</td>
                         <td>{{ $list->description }}</td>
+                        <td>
+                            @foreach ($list->departments_names as $departmentName)
+                                <p>{{ $departmentName }}</p>
+                            @endforeach
+                        </td>
                     </tr>
                 @endforeach
             @else

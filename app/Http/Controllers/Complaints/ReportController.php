@@ -83,7 +83,7 @@ class ReportController extends Controller
                 'closure_details.no_of_female_death',
                 'closure_details.no_of_child_death',
                 'closure_details.loss_type',
-                'closure_details.description'
+                'closure_details.description',
             );
 
         if (Auth::user()->roles->pluck('name')[0] == "Department") {
@@ -111,6 +111,14 @@ class ReportController extends Controller
 
         // Execute the query
         $complaintsLists = $query->get();
+
+        foreach ($complaintsLists as $complaint) {
+            $departmentIds = explode(',', $complaint->departments);
+        
+            $departments = Department::whereIn('id', $departmentIds)->pluck('department_name')->toArray();
+        
+            $complaint->departments_names = $departments;
+        }
         
 
         $html = view('Reports.dayWiseCallReportPdf', compact('complaintsLists', 'fromdate', 'todate', 'departmentName', 'status'))->render();
