@@ -10,6 +10,11 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        @if (isset($noDataMessage))
+                            <div class="alert alert-primary" role="alert">
+                                {{ $noDataMessage }}
+                            </div> 
+                        @endif
                         <form action="{{route('dayWiseCallReportPdf')}}" method="GET" target="_blank">
                             @csrf
                             <div class="row">
