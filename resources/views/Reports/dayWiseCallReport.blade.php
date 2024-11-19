@@ -34,7 +34,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="status">Status <span class="text-danger">*</span></label>
+                                    <label for="status">Status </label>
                                     <select class="form-control" name="status">
                                         <option value="">Select Status</option>
                                         <option value="Pending">Pending</option>
