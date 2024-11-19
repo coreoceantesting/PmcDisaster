@@ -51,9 +51,9 @@
                                     NA       
                                 @endif
                             </td>
-                            <th>Accpeted Status</th>
+                            <th>Closed Status</th>
                             @php
-                                $color = ($complaintsDetail->closing_status == "Approved") ? 'red' : 'green';
+                                $color = ($complaintsDetail->closing_status == "Pending") ? 'red' : 'green';
                             @endphp
                             <td>
                                 <span class="badge" style="background-color: {{ $color }};">
@@ -61,10 +61,10 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr>
+                        {{-- <tr>
                             <th>Approval Remark</th>
                             <td>{{ $complaintsDetail->approval_remark ?? 'NA' }}</td>
-                        </tr>
+                        </tr> --}}
                     </thead>
                 </table>
             </div>

@@ -49,7 +49,7 @@
                                     NA       
                                 @endif
                             </td>
-                            <th>Accpeted Status</th>
+                            <th>Closed Status</th>
                             @php
                                 $color = ($complaintsDetail->approval_status == "Approved") ? 'green' : 'red';
                             @endphp
@@ -59,10 +59,10 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr>
+                        {{-- <tr>
                             <th>Approval Remark</th>
                             <td>{{ $complaintsDetail->approval_remark ?? 'NA' }}</td>
-                        </tr>
+                        </tr> --}}
                     </thead>
                 </table>
             </div>

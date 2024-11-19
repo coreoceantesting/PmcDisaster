@@ -7,6 +7,39 @@
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 8px 12px; border: 1px solid #000; text-align: center; }
         th { background-color: #f2f2f2; }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-size: 12px; /* Small letters */
+            text-transform: lowercase; /* Convert text to lowercase */
+        }
+
+        .footer td {
+            padding: 5px;
+        }
+
+        .footer .left {
+            text-align: left;
+            width: 33%;
+        }
+
+        .footer .center {
+            text-align: center;
+            width: 34%;
+        }
+
+        .footer .right {
+            text-align: right;
+            width: 33%;
+        }
+
+        .footer table {
+        width: 100%;
+        border: none !important;
+    }
     </style>
 </head>
 <body>
@@ -40,10 +73,10 @@
                 <th rowspan="2">Description</th>
             </tr>
             <tr>
-                <th>Call No</th>
-                <th>Date</th>
+                <th>Complaint Id</th>
+                <th>Call Date</th>
                 <th>Caller Name</th>
-                <th>Address<br>Caller Mobile No.</th>
+                <th>Caller Address<br> Mobile No.</th>
                 <th colspan="3">Death</th>
                 <th colspan="3">Injured</th>
             </tr>
@@ -89,7 +122,7 @@
                         <td>{{ $list->complaint_details }}</td>
                         <td>{{ $list->location }}</td>
                         <td>{{ $list->closing_remark }}</td>
-                        <td>{{ \Carbon\Carbon::parse($list->closing_at)->setTimezone('Asia/Kolkata')->format('d-m-Y') }}</td>
+                        <td>{{ $list->closing_at ? \Carbon\Carbon::parse($list->closing_at)->format('d-m-y') : 'Pending' }}</td>
                         <td>{{ $list->loss_type }}</td>
                         <td>{{ $list->description }}</td>
                     </tr>
@@ -101,12 +134,13 @@
             @endif
         </tbody>
     </table>
-    <br>
-    <table width="100%">
+    <br>    
+    {{-- <table class="footer">
         <tr>
-            <td style="text-align: left; width: 33%;">Printed By: {{ Auth()->user()->name }}</td>
-            <td style="text-align: center; width: 33%;">Timestamp: {{\Carbon\Carbon::parse(now())->setTimezone('Asia/Kolkata')->format('d-m-Y h:i:s A') }}</td>
+            <td class="left">printed by: {{ Auth()->user()->name }}</td>
+            <td class="center"></td>
+            <td class="right">timestamp: {{ \Carbon\Carbon::parse(now())->setTimezone('Asia/Kolkata')->format('d-m-Y h:i:s A') }}</td>
         </tr>
-    </table>
+    </table> --}}
 </body>
 </html>
