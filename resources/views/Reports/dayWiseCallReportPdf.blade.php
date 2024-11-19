@@ -65,12 +65,12 @@
                 <th colspan="6">Incident Details</th>
                 <th rowspan="2">Disaster Type</th>
                 <th rowspan="2">Disaster Subtype</th>
-                <th rowspan="2">Description</th>
+                <th rowspan="2">Complaint Description</th>
                 <th rowspan="2">Location</th>
                 <th rowspan="2">Remark</th>
                 <th rowspan="2">Close At</th>
                 <th rowspan="2">Loss Type</th>
-                <th rowspan="2">Description</th>
+                <th rowspan="2">Closing Description</th>
                 <th rowspan="2">Department</th>
             </tr>
             <tr>

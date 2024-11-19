@@ -112,6 +112,10 @@ class ReportController extends Controller
         // Execute the query
         $complaintsLists = $query->get();
 
+        if ($complaintsLists->isEmpty()) {
+            return view('Reports.noDataFound');
+        }
+
         foreach ($complaintsLists as $complaint) {
             $departmentIds = explode(',', $complaint->departments);
         
