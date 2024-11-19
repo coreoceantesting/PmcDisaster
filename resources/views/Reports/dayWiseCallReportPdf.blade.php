@@ -46,7 +46,7 @@
     <div style="text-align: center; width: 100%;">
         <img src="{{ public_path('/admin/images/Panvel_Municipal_Corporation.png') }}" height="80" width="90" alt="Left Logo">
     </div>
-    <h3 style="text-align: center">Day-wise Call Report</h3>
+    <h3 style="text-align: center"> Day-wise {{ $status ? $status : 'All' }} Call Report</h3>
     <table width="100%">
         <tr>
             <td style="text-align: left; width: 33%;">From Date: {{\Carbon\Carbon::parse($fromdate)->setTimezone('Asia/Kolkata')->format('d-m-Y')  }}</td>

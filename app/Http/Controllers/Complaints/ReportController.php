@@ -64,6 +64,7 @@ class ReportController extends Controller
         $fromdate = $request->input('fromdate');
         $todate = $request->input('todate');
         $department = $request->input('department');
+        $status = $request->input('status');
         $departmentName = "";
 
         // Start the query
@@ -102,11 +103,17 @@ class ReportController extends Controller
             $query->whereBetween('complaints.created_at', [$fromdate, $endOfTodate]);
         }
 
+        if($status == "Pending"){
+            $query->where('complaints.closing_status', 'Pending');
+        }elseif($status == "Closed"){
+            $query->where('complaints.closing_status', 'Closed');
+        }
+
         // Execute the query
         $complaintsLists = $query->get();
         
 
-        $html = view('Reports.dayWiseCallReportPdf', compact('complaintsLists', 'fromdate', 'todate', 'departmentName'))->render();
+        $html = view('Reports.dayWiseCallReportPdf', compact('complaintsLists', 'fromdate', 'todate', 'departmentName', 'status'))->render();
         $mpdf = new Mpdf(
             [
                 'mode' => 'utf-8',

@@ -13,15 +13,15 @@
                         <form action="{{route('dayWiseCallReportPdf')}}" method="GET" target="_blank">
                             @csrf
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label for="fromdate"> From date <span class="text-danger">*</span></label>
                                     <input class="form-control" type="date" name="fromdate" id="fromdate" required>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label for="fromdate"> To date <span class="text-danger">*</span></label>
                                     <input class="form-control" type="date" name="todate" id="todate" required>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label for="fromdate">Department <span class="text-danger">*</span></label>
                                     <select class="form-control" name="department" id="department">
                                         <option value="">Select Department</option>
@@ -31,6 +31,14 @@
                                         @foreach ($department_list as $item)
                                             <option value="{{ $item->id }}">{{ $item->department_name }}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="status">Status <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="status">
+                                        <option value="">Select Status</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Closed">Closed</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
