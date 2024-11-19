@@ -66,7 +66,6 @@ class ReportController extends Controller
         $department = $request->input('department');
         $status = $request->input('status');
         $departmentName = "";
-        $noDataMessage = "";
 
         // Start the query
         $query = Complaint::leftJoin('complaint_types', 'complaints.complaint_type', '=', 'complaint_types.id')
@@ -119,16 +118,6 @@ class ReportController extends Controller
             $departments = Department::whereIn('id', $departmentIds)->pluck('department_name')->toArray();
         
             $complaint->departments_names = $departments;
-        }
-
-        if ($complaintsLists->isEmpty()) {
-            if(Auth::user()->roles->pluck('name')[0] == "Department"){
-                $department_list = Department::where('id', auth()->user()->department)->get();
-            }else{
-                $department_list = Department::latest()->get();
-            }
-            $noDataMessage = 'No complaints found for the selected criteria.';
-            return view('Reports.dayWiseCallReport')->with(['noDataMessage' => $noDataMessage, 'department_list' => $department_list]);
         }
         
 
