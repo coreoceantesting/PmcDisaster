@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin\Masters\LossType;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreLossRequest extends FormRequest
 {
@@ -22,7 +23,12 @@ class StoreLossRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'loss_type_name' => 'required|unique:losses,loss_type_name',
+            'loss_type_name' => [
+                'required',
+                Rule::unique('losses', 'loss_type_name')->where(function ($query) {
+                    return $query->whereNull('deleted_at');
+                }),
+            ],
             'initial' => 'nullable',
         ];
     }

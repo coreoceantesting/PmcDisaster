@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin\Masters\ComplaintType;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreComplaintTypeRequest extends FormRequest
 {
@@ -22,7 +23,12 @@ class StoreComplaintTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'complaint_type_name' => 'required|unique:complaint_types,complaint_type_name',
+            'complaint_type_name' => [
+                'required',
+                Rule::unique('complaint_types', 'complaint_type_name')->where(function ($query) {
+                    return $query->whereNull('deleted_at');
+                }),
+            ],
             'initial' => 'required',
         ];
     }
