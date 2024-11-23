@@ -130,6 +130,7 @@ class ReportController extends Controller
             [
                 'mode' => 'utf-8',
                 'format' => 'A4',
+                'orientation' => 'L'
             ]
         );
         $mpdf->WriteHTML($html);
