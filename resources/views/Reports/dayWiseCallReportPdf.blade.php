@@ -8,6 +8,21 @@
         th, td { padding: 8px 12px; border: 1px solid #000; text-align: center; }
         th { background-color: #f2f2f2; }
 
+        /* Specific styling for bordered tables */
+        .table-bordered th, .table-bordered td {
+            border: 1px solid #000;
+        }
+
+        .table-bordered th {
+            background-color: #f2f2f2;
+        }
+
+        /* Styling for borderless first table */
+        .table-no-border td {
+            border: none;
+            text-align: left;
+        }
+
         .footer {
             position: fixed;
             bottom: 0;
@@ -45,17 +60,18 @@
 <body>
     <div style="text-align: center; width: 100%;">
         <img src="{{ public_path('/admin/images/Panvel_Municipal_Corporation.png') }}" height="80" width="90" alt="Left Logo">
+        <h3>पनवेल महानगरपालिका</h3>
+        <h4>ता .पनवेल , जि . रायगड , पनवेल - ४१०२०६</h4>
     </div>
     <h3 style="text-align: center"> Day-wise {{ $status ? $status : 'All' }} Call Report</h3>
-    <table width="100%">
+    <table class="table-no-border">
         <tr>
-            <td style="text-align: left; width: 33%;">From Date: {{\Carbon\Carbon::parse($fromdate)->setTimezone('Asia/Kolkata')->format('d-m-Y')  }}</td>
-            <td style="text-align: center; width: 33%;">To Date: {{\Carbon\Carbon::parse($todate)->setTimezone('Asia/Kolkata')->format('d-m-Y') }}</td>
+            <td style="text-align: left; width: 33%;">From Date: {{ \Carbon\Carbon::parse($fromdate)->setTimezone('Asia/Kolkata')->format('d-m-Y') }}</td>
+            <td style="text-align: center; width: 33%;">To Date: {{ \Carbon\Carbon::parse($todate)->setTimezone('Asia/Kolkata')->format('d-m-Y') }}</td>
             <td style="text-align: center; width: 33%;">{{ empty($departmentName) ? "All" : $departmentName }}</td>
-            <td style="text-align: right; width: 33%;">Generated Date:{{\Carbon\Carbon::parse(now())->setTimezone('Asia/Kolkata')->format('d-m-Y') }}</td>
+            <td style="text-align: right; width: 33%;">Generated Date: {{ \Carbon\Carbon::parse(now())->setTimezone('Asia/Kolkata')->format('d-m-Y') }}</td>
         </tr>
     </table>
-    <br>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -128,9 +144,11 @@
                         <td>{{ $list->loss_type }}</td>
                         <td>{{ $list->description }}</td>
                         <td>
-                            @foreach ($list->departments_names as $departmentName)
-                                <p>{{ $departmentName }},</p>
-                            @endforeach
+                            <ol>
+                                @foreach ($list->departments_names as $departmentName)
+                                    <li style="float:left">{{ $departmentName }}</li>
+                                @endforeach
+                            </ol>
                         </td>
                     </tr>
                 @endforeach
