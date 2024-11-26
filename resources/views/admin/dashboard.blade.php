@@ -180,6 +180,7 @@
                                             <th>Sr.No</th>
                                             <th>Caller Name</th>
                                             <th>Caller Mobile No</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -188,6 +189,7 @@
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $list->caller_name }}</td>
                                                 <td>{{ $list->caller_mobile_no }}</td>
+                                                <td>{{ $list->closing_status }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
