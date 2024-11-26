@@ -84,6 +84,7 @@ class ReportController extends Controller
                 'closure_details.no_of_child_death',
                 'closure_details.loss_type',
                 'closure_details.description',
+                'closure_details.created_at as closing_date',
             );
 
         if (Auth::user()->roles->pluck('name')[0] == "Department") {

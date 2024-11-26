@@ -140,7 +140,7 @@
                         <td>{{ $list->complaint_details }}</td>
                         <td>{{ $list->location }}</td>
                         <td>{{ $list->closing_remark }}</td>
-                        <td>{{ $list->closing_at ? \Carbon\Carbon::parse($list->closing_at)->format('d-m-y') : 'Pending' }}</td>
+                        <td>{{ $list->closing_date ? \Carbon\Carbon::parse($list->closing_date)->setTimezone('Asia/Kolkata')->format('d-m-y h:i:s A') : 'Pending' }}</td>
                         <td>{{ $list->loss_type }}</td>
                         <td>{{ $list->description }}</td>
                         <td>
