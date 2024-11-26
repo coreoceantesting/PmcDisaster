@@ -32,7 +32,7 @@ class StoreClosureDetailsRequest extends FormRequest
             'total_death' => 'nullable',
             'remark' => 'required',
             'upload_doc' => 'nullable',
-            'loss_type' => 'nullable',
+            'loss_type' => 'required',
             'description' => 'nullable',
         ];
     }

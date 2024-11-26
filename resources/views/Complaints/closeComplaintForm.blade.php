@@ -77,7 +77,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="loss_type">Loss Type ( नुकसानाचा प्रकार )</label>
+                                    <label class="col-form-label" for="loss_type">Loss Type ( नुकसानाचा प्रकार ) <span class="text-danger">*</span></label>
                                     <select class="form-control" name="loss_type" id="loss_type">
                                         <option value="">Select Loss Type</option>
                                         @foreach ($losses as $loss)
