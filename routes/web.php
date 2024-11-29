@@ -59,6 +59,7 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     Route::post('/store-closure-details', [App\Http\Controllers\Complaints\CloseComplaintController::class, 'storeClosureDetails'])->name('store.closureDetails');
     Route::get('/closed-complaint-list', [App\Http\Controllers\Complaints\CloseComplaintController::class, 'closedComplaintList'])->name('closedComplaintList');
     Route::get('/view-complaint-details/{id}', [App\Http\Controllers\Complaints\ComplaintsController::class, 'viewComplaintDetails'])->name('viewComplaintDetails');
+    Route::post('/take-action-on-complaint', [App\Http\Controllers\Complaints\ComplaintsController::class, 'takeActionOnComplaint'])->name('takeAction.complaint');
 
     // reports
     Route::get('/departmentwise-report', [App\Http\Controllers\Complaints\ReportController::class, 'departmentWiseReport'])->name('departmentWiseReport');

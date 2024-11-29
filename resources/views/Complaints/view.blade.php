@@ -51,11 +51,17 @@
                             </td>
                             <th>Closed Status</th>
                             @php
-                                $color = ($complaintsDetail->approval_status == "Approved") ? 'green' : 'red';
+                                if ($complaintsDetail->closing_status == "Pending") {
+                                    $color = "grey";
+                                }elseif ($complaintsDetail->closing_status == "WIP") {
+                                    $color = "red";
+                                }elseif ($complaintsDetail->closing_status == "Closed") {
+                                    $color = "green";
+                                }
                             @endphp
                             <td>
                                 <span class="badge" style="background-color: {{ $color }};">
-                                    {{ $complaintsDetail->approval_status }}
+                                    {{ $complaintsDetail->closing_status }}
                                 </span>
                             </td>
                         </tr>
@@ -68,10 +74,11 @@
             </div>
         </div>
         <div class="card-footer text-center">
-            {{-- @if ($complaintsDetail->approval_status == "Pending" && auth()->user()->roles->pluck('name')[0] == 'Department')
-                <button id="approve" class="btn btn-sm btn-success approve-element" data-id="{{ $complaintsDetail->id }}">Accept</button>
-                <button id="transfer" class="btn btn-sm btn-danger transfer-element" data-id="{{ $complaintsDetail->id }}">Transfer</button> 
-            @endif --}}
+            @if ($complaintsDetail->closing_status == "Pending" && auth()->user()->roles->pluck('name')[0] == 'Department')
+                {{-- <button id="approve" class="btn btn-sm btn-success approve-element" data-id="{{ $complaintsDetail->id }}">Accept</button>
+                <button id="transfer" class="btn btn-sm btn-danger transfer-element" data-id="{{ $complaintsDetail->id }}">Transfer</button>  --}}
+                <button id="take_action" class="btn btn-sm btn-success take-action-element" data-id="{{ $complaintsDetail->id }}">Take Action</button>
+            @endif
             <a href="{{ url()->previous() }}" class="btn btn-sm btn-info">Back</a>
         </div>
 
@@ -125,6 +132,31 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" id="transferRemark" class="btn btn-primary">Transfer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- take action modal -->
+        <div class="modal fade" id="takeActionModal" tabindex="-1" aria-labelledby="takeActionModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="takeActionModalLabel">Accept Complaint</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="takeActionForm">
+                            <input type="hidden" id="take_action_complaint_id" name="take_action_complaint_id">
+                            <div class="mb-3">
+                            <label for="remark" class="form-label">Remark</label>
+                            <textarea class="form-control" id="take_action_remark" name="take_action_remark" rows="3" required></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="takeActionRemark" class="btn btn-primary">Take Action</button>
                     </div>
                 </div>
             </div>
@@ -207,6 +239,48 @@
           success: function(data)
             {
 
+                if (!data.error2)
+                    swal("Successful!", data.success, "success")
+                        .then((action) => {
+                            window.location.href = '{{ route('complaints.index') }}';
+                        });
+                else
+                    swal("Error!", data.error2, "error");
+            },
+        });
+      });
+    });
+</script>
+
+{{-- Take Action On Complain --}}
+<script>
+    $(document).ready(function() {
+      $('.take-action-element').on('click', function() {
+        var complaintId = $(this).data('id'); 
+        $('#take_action_complaint_id').val(complaintId); 
+        $('#takeActionModal').modal('show');
+      });
+     
+      $('#takeActionRemark').on('click', function() {
+        var id = $('#take_action_complaint_id').val();
+        var remark = $('#take_action_remark').val();
+    
+        // if(remark === '') {
+        //   alert('Remark is required');
+        //   return;
+        // }
+    
+        $.ajax({
+          url: '{{ route("takeAction.complaint") }}',
+          type: 'POST',
+          data: {
+            _token: '{{ csrf_token() }}',
+            id: id,
+            remark: remark
+          },
+          success: function(data)
+            {
+                $("#editSubmit").prop('disabled', false);
                 if (!data.error2)
                     swal("Successful!", data.success, "success")
                         .then((action) => {

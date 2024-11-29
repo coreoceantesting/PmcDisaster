@@ -24,7 +24,8 @@ class ComplaintsController extends Controller
         $query = Complaint::join('complaint_types', 'complaints.complaint_type', '=', 'complaint_types.id')
         ->join('complaint_sub_types', 'complaints.complaint_sub_type', '=', 'complaint_sub_types.id')
         ->select('complaints.*','complaint_types.complaint_type_name', 'complaint_sub_types.complaint_sub_type_name')
-        ->where('complaints.closing_status', 'Pending');
+        ->where('complaints.closing_status', 'Pending')
+        ->orwhere('complaints.closing_status', 'WIP');
 
         if(auth()->user()->roles->pluck('name')[0] == 'Department')
         {
@@ -265,6 +266,31 @@ class ComplaintsController extends Controller
             'departmentNames' => $departmentNames,
             'closureDetails' => $closureDetails
         ]);
+    }
+
+    public function takeActionOnComplaint(Request $request)
+    {
+        try
+        {
+            DB::beginTransaction();
+            $complaintId = $request->input('id');
+            $remark = $request->input('remark');
+
+            DB::table('complaints')->where('id', $complaintId)->update([
+                'closing_status' => 'WIP',
+                'action_remark' => $remark,
+                'action_taken_by' => auth()->user()->id,
+                'action_taken_at' => now()
+            ]);
+            
+            DB::commit();
+
+            return response()->json(['success'=> 'Action Taken On Complaint Successfully!']);
+        }
+        catch(\Exception $e)
+        {
+            return $this->respondWithAjax($e, 'Action Taken', 'Complaint');
+        }
     }
 
 }

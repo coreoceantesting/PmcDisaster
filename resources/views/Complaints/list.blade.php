@@ -16,6 +16,7 @@
                                         <th>Complaint Sub Type</th>
                                         <th>Caller Name</th>
                                         <th>Caller Mobile No</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -28,6 +29,7 @@
                                             <td>{{ $list->complaint_sub_type_name }}</td>
                                             <td>{{ $list->caller_name }}</td>
                                             <td>{{ $list->caller_mobile_no }}</td>
+                                            <td>{{ $list->closing_status }}</td>
                                             <td>
                                                 <a href="{{ route('complaints.show', $list->id) }}" class="view-element btn btn-sm btn-primary px-2 py-1" title="View Complaint" data-id="{{ $list->id }}"><i class="ri-eye-line"></i></a>
                                                 @can(['complaints.edit'])   

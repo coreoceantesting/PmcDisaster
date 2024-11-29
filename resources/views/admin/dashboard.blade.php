@@ -3,6 +3,18 @@
     <x-slot name="heading">Dashboard</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
+    <style>
+        .blink-row {
+            animation: blink 1s step-start 0s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+
     <div class="row">
         <div class="col">
             <div class="d-flex flex-column h-100">
@@ -185,7 +197,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($pendingComplaintsLists as $index => $list)
-                                            <tr>
+                                            <tr class="{{ $list->closing_status == 'Pending' ? 'blink-row bg-danger' : '' }}">
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $list->caller_name }}</td>
                                                 <td>{{ $list->caller_mobile_no }}</td>
