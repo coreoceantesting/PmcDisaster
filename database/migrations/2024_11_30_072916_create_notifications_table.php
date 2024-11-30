@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id')->nullable();
             $table->integer('complaint_id')->nullable();
+            $table->string('departmentids')->nullable();
             $table->string('message')->nullable();
             $table->integer('is_read')->default(0);
             $table->timestamps();

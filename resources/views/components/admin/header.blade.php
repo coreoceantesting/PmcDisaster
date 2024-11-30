@@ -1,3 +1,29 @@
+<style>
+        .modal-backdrop {
+    z-index: 1;
+    }
+    @keyframes shake {
+        0% { transform: rotate(0); }
+        15% { transform: rotate(5deg); }
+        30% { transform: rotate(-5deg); }
+        45% { transform: rotate(4deg); }
+        60% { transform: rotate(-4deg); }
+        75% { transform: rotate(2deg); }
+        85% { transform: rotate(-2deg); }
+        92% { transform: rotate(1deg); }
+        100% { transform: rotate(0); }
+    }
+
+    .shake {
+        animation: shake 0.5s;
+        animation-iteration-count: infinite;
+    }
+
+    .latest-notification {
+            background-color: #f0f0f0; /* Example highlight style */
+            font-weight: bold;
+        }
+</style>
 <header id="page-topbar">
     <div class="layout-width">
         <div class="navbar-header">
@@ -153,6 +179,35 @@
                     </div>
                 </div>
 
+                
+                <div id="notification-bell" style="cursor: pointer;">
+                    <i class="fa fa-bell" style="font-size: 25px;color:gold"></i>
+                    <span id="notification-count" style="color:white;font-weight:bold"></span>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
+                                <button type="button" class="close" id="closeNotification" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <ul id="notification-list" class="list-group">
+                                    <!-- Notifications will be dynamically added here -->
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+                                <a href="{{ route('complaints.index') }}" class="btn btn-warning" data-dismiss="modal">View All</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="ms-1 header-item d-none d-sm-flex">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-toggle="fullscreen">
@@ -259,4 +314,118 @@
 
         });
     </script>
+
+<script>
+    function fetchNotificationCount() {
+        $.ajax({
+            url: '/notifications/count',
+            method: 'GET',
+            success: function(data) {
+                $('#notification-count').text(data.count);
+                if (data.count > 0) {
+                    $('#notification-bell').addClass('shake');
+                } else {
+                    $('#notification-bell').removeClass('shake');
+                }
+            }
+        });
+    }
+    
+    $(document).ready(function() {
+        fetchNotificationCount();
+        setInterval(fetchNotificationCount, 60000); // Update every minute
+    });
+</script>
+
+<script>
+    function fetchNotifications() {
+        $.ajax({
+            url: '/notifications',
+            method: 'GET',
+            success: function(data) {
+                var notificationList = $('#notification-list');
+                notificationList.empty();
+                var latestNotificationId = null;
+                data.notifications.forEach(function(notification) {
+                    var listItem = $('<li class="list-group-item" style="cursor:pointer"></li>');
+                    listItem.attr('data-notification-id', notification.notification_id); // Assuming notification has an 'id' field
+                    listItem.html(
+                        '<strong>' + notification.complaint_unique_id + '</strong><br>' +
+                        '<small>' + notification.caller_name + '</small>'
+                    );
+
+                    notificationList.append(listItem);
+
+                    // Highlight the latest notification
+                    if (latestNotificationId === null || notification.notification_id > latestNotificationId) {
+                        latestNotificationId = notification.notification_id;
+                        listItem.addClass('latest-notification');
+                    }
+
+                    // Click event handler for each notification
+                    listItem.on('click', function() {
+                        var notificationId = $(this).data('notification-id');
+                        markNotificationAsRead(notificationId);
+                    });
+
+                });
+                $('#notificationModal').modal('show');
+            }
+        });
+
+        markAllNotificationsAsRead();
+    }
+
+    function markAllNotificationsAsRead() {
+        $.ajax({
+            url: '/notifications/mark-all-as-read',
+            method: 'POST', // Assuming you use POST for updating
+            data: {
+                _token: '{{ csrf_token() }}' // Laravel CSRF protection
+            },
+            success: function(response) {
+                // Handle success if needed
+                console.log('All notifications marked as read');
+                fetchNotificationCount(); // Update notification count if needed
+            },
+            error: function(xhr, status, error) {
+                // Handle error if needed
+                console.error('Error marking all notifications as read:', error);
+            }
+        });
+    }
+
+
+    function markNotificationAsRead(notificationId) {
+        $.ajax({
+            url: '/notifications/' + notificationId + '/mark-as-read',
+            method: 'POST', // Assuming you use POST for updating
+            data: {
+                _token: '{{ csrf_token() }}' // Laravel CSRF protection
+            },
+            success: function(response) {
+                // Handle success if needed
+                console.log('Notification marked as read:', notificationId);
+                fetchNotifications();
+                fetchNotificationCount();
+                // Optionally, close the modal or update UI
+            },
+            error: function(xhr, status, error) {
+                // Handle error if needed
+                console.error('Error marking notification as read:', error);
+            }
+        });
+    }
+    
+    $('#notification-bell').on('click', function() {
+        fetchNotifications();
+        $('#notification-count').text('0');
+        $('.latest-notification').removeClass('latest-notification');
+    });
+</script>
+<script>
+    $('#closeNotification').on('click', function() {
+        $('#notificationModal').modal('hide');
+    });
+</script>
 @endpush

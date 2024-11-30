@@ -66,6 +66,11 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     Route::get('/daywise-call-report', [App\Http\Controllers\Complaints\ReportController::class, 'dayWiseCallReport'])->name('dayWiseCallReport');
     Route::get('/daywise-call-report-pdf', [App\Http\Controllers\Complaints\ReportController::class, 'dayWiseCallReportPdf'])->name('dayWiseCallReportPdf');
 
+    // notification
+    Route::get('/notifications/count', [App\Http\Controllers\Complaints\ComplaintsController::class, 'getCount'])->name('getCount');
+    Route::get('/notifications', [App\Http\Controllers\Complaints\ComplaintsController::class, 'getNotifications'])->name('getNotifications');
+    Route::post('/notifications/{id}/mark-as-read', [App\Http\Controllers\Complaints\ComplaintsController::class, 'markAsRead'])->name('notifications.markAsRead');
+    Route::post('/notifications/mark-all-as-read', [App\Http\Controllers\Complaints\ComplaintsController::class, 'markAllAsRead'])->name('notifications.allmarkAsRead');
 
 
 

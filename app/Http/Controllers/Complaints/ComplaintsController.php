@@ -75,7 +75,16 @@ class ComplaintsController extends Controller
                 $input['uploaded_doc'] = $DocPath;
             }
 
-            Complaint::create($input);
+            $complaint = Complaint::create($input);
+            
+            // Create a notification
+            DB::table('notifications')->insert([
+                'user_id' => auth()->user()->id, 
+                'complaint_id' => $complaint->id,
+                'departmentids' =>  $input['departments'],
+                'message' => 'A New Complaint Generated', 
+            ]);
+
             DB::commit();
 
             return response()->json(['success' => $applicationNo . ' Complaint registered successfully!']);
@@ -292,6 +301,53 @@ class ComplaintsController extends Controller
         {
             return $this->respondWithAjax($e, 'Action Taken', 'Complaint');
         }
+    }
+
+    public function getCount()
+    {
+        $count = DB::table('notifications')
+                    ->where('is_read', 0)
+                    ->count();
+
+        return response()->json(['count' => $count]);
+    }
+
+    public function getNotifications()
+    {
+        $query = DB::table('notifications')
+                            ->join('complaints', 'notifications.complaint_id', '=', 'complaints.id');
+        if(auth()->user()->roles->pluck('name')[0] == 'Department')
+        {
+            $query->whereRaw("FIND_IN_SET(?, notifications.departmentids)", [auth()->user()->department]);
+        }
+
+        $notifications =  $query->orderBy('notifications.id', 'desc')
+        ->take(5)
+        ->get(['notifications.*', 'complaints.complaint_unique_id', 'complaints.caller_name']);
+
+        return response()->json(['notifications' => $notifications]);
+    }
+
+    public function markAsRead($id)
+    {
+        $notification = DB::table('notifications')->where('id', $id)->first();
+
+        if (!$notification) {
+            return response()->json(['error' => 'Notification not found.'], 404);
+        }
+
+        // Assuming 'is_read' is a boolean field in your notifications table
+        DB::table('notifications')->where('id', $id)->update(['is_read' => 1]);
+
+        return response()->json(['message' => 'Notification marked as read.']);
+    }
+
+    public function markAllAsRead()
+    {
+        // Assuming 'is_read' is a boolean field in your notifications table
+        DB::table('notifications')->where('is_read', 0)->update(['is_read' => 1]);
+
+        return response()->json(['message' => 'All notifications marked as read.']);
     }
 
 }
