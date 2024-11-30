@@ -93,7 +93,8 @@ class ComplaintsController extends Controller
     {
         $complaintsDetail = Complaint::join('complaint_types', 'complaints.complaint_type', '=', 'complaint_types.id')
         ->join('complaint_sub_types', 'complaints.complaint_sub_type', '=', 'complaint_sub_types.id')
-        ->select('complaints.*','complaint_types.complaint_type_name', 'complaint_sub_types.complaint_sub_type_name')
+        ->join('users', 'complaints.action_taken_by', '=', 'users.id')
+        ->select('complaints.*','complaint_types.complaint_type_name', 'complaint_sub_types.complaint_sub_type_name', 'users.name as username')
         ->where('complaints.id', $id)
         ->first();
         $departmentIds = explode(',', $complaintsDetail->departments);

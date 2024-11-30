@@ -65,6 +65,12 @@
                                 </span>
                             </td>
                         </tr>
+                        <tr>
+                            <th>Action Taken By</th>
+                            <td>{{ $complaintsDetail->username ?? 'NA' }}</td>
+                            <th>Remark When Action Is Taken</th>
+                            <td>{{ $complaintsDetail->action_remark ?? 'NA' }}</td>
+                        </tr>
                         {{-- <tr>
                             <th>Approval Remark</th>
                             <td>{{ $complaintsDetail->approval_remark ?? 'NA' }}</td>
