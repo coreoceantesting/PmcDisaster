@@ -37,8 +37,8 @@ class DashboardController extends Controller
         }
 
         $complaintsLists = $complaintsQuery->first();
-        $pendingComplaintsLists = $pendingQuery->take(5)->get();
-        $closedComplaintsLists = $closedQuery->take(5)->get();
+        $pendingComplaintsLists = $pendingQuery->latest()->take(5)->get();
+        $closedComplaintsLists = $closedQuery->latest()->take(5)->get();
 
         return view('admin.dashboard')->with([
             'complaintsLists' => $complaintsLists,
