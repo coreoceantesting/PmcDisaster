@@ -145,8 +145,12 @@
                         <td>{{ $list->description }}</td>
                         <td>
                             <ol>
-                                @foreach ($list->departments_names as $departmentName)
+                                @foreach ($list->departments_names as $index => $departmentName)
+                                    @if ($list->dept == $index)
+                                     <li style="float:left"><b>{{ $departmentName }}</b></li>  
+                                    @else
                                     <li style="float:left">{{ $departmentName }}</li>
+                                    @endif
                                 @endforeach
                             </ol>
                         </td>

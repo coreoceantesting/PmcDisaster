@@ -71,6 +71,7 @@ class ReportController extends Controller
         $query = Complaint::leftJoin('complaint_types', 'complaints.complaint_type', '=', 'complaint_types.id')
             ->leftJoin('complaint_sub_types', 'complaints.complaint_sub_type', '=', 'complaint_sub_types.id')
             ->leftJoin('closure_details', 'complaints.id', '=', 'closure_details.complaint_id')
+            ->leftJoin('users', 'complaints.closing_by', '=', 'users.id')
             // ->where('complaints.approval_status', 'Approved')
             ->select(
                 'complaints.*',
@@ -85,6 +86,7 @@ class ReportController extends Controller
                 'closure_details.loss_type',
                 'closure_details.description',
                 'closure_details.created_at as closing_date',
+                'users.department as dept',
             );
 
         if (Auth::user()->roles->pluck('name')[0] == "Department") {
@@ -120,11 +122,11 @@ class ReportController extends Controller
         foreach ($complaintsLists as $complaint) {
             $departmentIds = explode(',', $complaint->departments);
         
-            $departments = Department::whereIn('id', $departmentIds)->pluck('department_name')->toArray();
+            $departments = Department::whereIn('id', $departmentIds)->pluck('department_name','id')->toArray();
         
             $complaint->departments_names = $departments;
         }
-        
+        // dd($complaintsLists);
 
         $html = view('Reports.dayWiseCallReportPdf', compact('complaintsLists', 'fromdate', 'todate', 'departmentName', 'status'))->render();
         $mpdf = new Mpdf(
